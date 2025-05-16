@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+OSM=0
+NETEX=0
+CONFIG=0
+STREET=0
+TRANSIT=0
+REPORT=0
+FILE=""
+KEEP=0
+
+function main() {
+  parseOptions $*
+  delete $OSM "*.osm.pbf"
+  delete $NETEX "netex"
+  delete $CONFIG "*-config.json"
+  delete $STREET "streetGraph-*.obj"
+  delete $TRANSIT "graph-*.obj"
+  delete $REPORT "report"
+}
+
+function delete() {
+  if [ $KEEP != $1  ] ; then
+    for file in $(find $FILE -name "$2"); do
+      rm -Rf "$file"
+    done
+  fi
+}
+
+function parseOptions() {
+  del=0
+
+  while getopts "oOnNcCsStTrRhd:" opt; do
+    case "$opt" in
+      o) OSM=1 && KEEP=1 ;;
+      O) OSM=1 && del=1;;
+      n) NETEX=1 && KEEP=1 ;;
+      N) NETEX=1 && del=1 ;;
+      c) CONFIG=1 && KEEP=1 ;;
+      C) CONFIG=1 && del=1 ;;
+      s) STREET=1 && KEEP=1 ;;
+      S) STREET=1 && del=1 ;;
+      t) TRANSIT=1 && KEEP=1 ;;
+      T) TRANSIT=1 && del=1 ;;
+      r) REPORT=1 && KEEP=1 ;;
+      R) REPORT=1 && del=1 ;;
+      d) DAYS=$OPTARG ;;
+      h) help && exit 0 ;;
+      /?) exit 1 ;;
+    esac
+  done
+
+  shift $((OPTIND-1))
+  if [ $# != 1 ]; then
+    error "The <path> argument is requiered."
+  fi
+
+  FILE=$1
+
+  if [ $KEEP -eq 1 -a $del -eq 1 ]; then
+    error "Lowercase case and uppercase options can not be used together."
+  fi
+}
+
+function error() {
+    echo "ERROR - $*"
+    echo ""
+    exit 1
+}
+
+function help() {
+  echo "
+NAME
+     ./otp-clean
+
+SYNOPSIS
+     Keep all, delete given files using uppercse file options.
+
+          ./otp-clean [-O] [-N] [-C] [-S] [-T] [-R] [-w <days>] <path>
+
+     Delete all, keep given files using lowercase file options.
+
+          ./otp-clean [-o] [-n] [-c] [-s] [-t] [-r] [-w <days>] <path>
+
+     Delete all, no file options
+
+          ./otp-clean [-w <days>] <path>
+
+DESCRIPTION
+     Cleanup OTP config, OSM, NeTEx and graph files. Geojson files are not touched.
+
+     The following options are available, use lowercase to keep and uppercase to delete:
+
+     -o -O   Keep/delete OSM files (*.osm.pbf).
+     -n -N   Keep/delete NeTEx files (netex/). Rename the netex directory if you want to keep it.
+     -c -C   Keep/delete config json files (*-config.json).
+     -s -S   Keep/delete street graph files (streetGraph-*.obj).
+     -t -T   Keep/delete transit graph files (graph-*.obj).
+     -r -R   Keep/delete report catalog (report/).
+     -d <days>
+             Delete all files older then the given number of <days>.
+
+     <path>  The relative path to search. The paths is search recursivly.
+
+EXAMPLES
+     Delete all files in 'otp/*' witch is older than 10 days.
+          $ ./otp-clean -d 10 otp/
+
+     Delete street and transit graph in 'otp/norway'.
+
+          $ ./otp-clean -ST otp/norway
+
+     Delete all report directories in 'otp/'.
+
+          $ ./otp-clean -R otp
+
+     Keep OSM, config and street graph in 'otp/fylker/innlandet', delete the rest.
+
+          $ ./otp-clean -ocs otp/fylker/innlandet
+"
+}
+
+main $*

@@ -1,0 +1,15 @@
+{
+  "configVersion" : "v2.8.0-entur-71 - STAGEING, 16-MAY-2025",
+  "otpFeatures" : {
+    "ActuatorAPI" : true,
+    "Emission" : true,
+    "FlexRouting" : true,
+    "FloatingBike" : true,
+    "Sorlandsbanen" : true,
+    "MultiCriteriaGroupMaxFilter" : true,
+    "OptimizeTransfers" : true,
+    "ParallelRouting" : false,
+    "ReportApi" : true,
+    "TransferConstraints" : true
+  }
+}

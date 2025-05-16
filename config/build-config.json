@@ -1,0 +1,58 @@
+{
+  "configVersion": "v2.8.0-entur-71",
+  "dataImportReport": true,
+  "subwayAccessTime": 0,
+  "embedRouterConfig": true,
+  "areaVisibility": true,
+  "platformEntriesLinking": true,
+  "osmDefaults": {
+    "osmTagMapping": "norway",
+    "timeZone": "Europe/Oslo"
+  },
+  "osmCacheDataInMem": "true",
+  "staticParkAndRide": true,
+  "staticBikeParkAndRide": true,
+  "maxDataImportIssuesPerFile": 1000,
+  "maxTransferDuration": "30m",
+  "distanceBetweenElevationSamples": 25,
+  "multiThreadElevationCalculations": true,
+  "boardingLocationTags": [],
+//  "osm": [
+//    {
+//      "source": "gs://marduk-test/osm/norway-latest.osm.pbf"
+//    },
+//    {
+//      "source": "gs://marduk-test/osm/static/osm_static_sweden_extract.pbf"
+//    },
+//    {
+//      "source": "gs://marduk-test/osm/static/osm_static_sweden_storlien_extract.pbf"
+//    }
+//  ],
+//  "dem": [
+//    {
+//      "source": "gs://ror-marduk-internal-test/kartverket/heightData/norge_dem_50m_33.tif"
+//    }
+//  ],
+  "transitFeeds": [
+    {
+      "type": "netex",
+//      "source": "gs://marduk-test/outbound/netex/rb_norway-aggregated-netex.zip",
+      "sharedFilePattern": "_stops.xml",
+      "sharedGroupFilePattern": "_(\\w{3})(_flexible)?_shared_data.xml",
+      "groupFilePattern": "(\\w{3})_.*\\.xml",
+      "feedId": "RB",
+      "ignoreFareFrame": false
+    }
+  ],
+//  "emission": {
+//    "feeds": [
+//      {
+//        "feedId": "RB",
+//        "source": "gs://emissions-to-otp/emissions-to-otp.csv"
+//      }
+//    ]
+//  },
+  "streetGraph": "streetGraph-${otp.serialization.version.id}.obj",
+  "graph": "graph-otp2-${otp.serialization.version.id}.obj",
+  "buildReportDir": "report"
+}
