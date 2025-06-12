@@ -13,9 +13,9 @@ object CaseParser {
 
     for (it in reader.readLines()) {
       val line = it.trim()
-      val header = HEADERS.all { line.contains(it, true) }
+      val isHeader = HEADERS.all { line.contains(it, true) }
 
-      if (header || line.isBlank() || line.startsWith("#")) {
+      if (isHeader || line.isBlank() || line.startsWith("#")) {
         continue;
       }
       result.add(parseLine(line))

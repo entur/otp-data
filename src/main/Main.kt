@@ -19,9 +19,7 @@ fun main(args : Array<String>) {
 
   val repository = Repository(config)
 
-  // Environment: dev, production
-  val env = mapOf(Pair("environment", "production"))
-  val case = repository.getCase(args[0], env)
+  val case = repository.getCase(args[0], config.env)
   println(case)
   val targetDir = File(case.name)
   println("Setup ${targetDir.path}")

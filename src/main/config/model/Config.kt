@@ -7,7 +7,8 @@ import kotlin.text.split
 data class Config(
     val osm: List<ConfResource>,
     val netex: List<ConfResource>,
-    val cases: List<ConfCase>
+    val cases: List<ConfCase>,
+    val env: Map<String, String>
 ) {
 
   override fun toString(): String {
@@ -51,7 +52,7 @@ fun List<String>.toStr() : String {
 }
 
 fun String?.splt() : List<String> {
-  return this?.split(regex = Regex("[ ,]+")) ?: listOf()
+  return this?.split(regex = Regex("[ ,]+"))?.filter { !it.isBlank() } ?: listOf()
 }
 
 fun case(name : String, osm : String?, geojson: String?, netex : String?) : ConfCase {
