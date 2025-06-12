@@ -8,7 +8,9 @@ log-*.txt
 *-config.json
 *osm.pbf
 *.jmx
+*.xml
 *.log
+*.iml
 *50m_33.tif
 
 report/
@@ -17,3 +19,4 @@ jmeter/
 speedtest/
 tools/
 target/
+otp/
