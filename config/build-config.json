@@ -1,17 +1,10 @@
 {
-  "configVersion": "v2.8.0-entur-71",
+  "configVersion": "v2.8.0-entur-105",
   "dataImportReport": true,
   "subwayAccessTime": 0,
   "embedRouterConfig": true,
   "areaVisibility": true,
   "platformEntriesLinking": true,
-  "osmDefaults": {
-    "osmTagMapping": "norway",
-    "timeZone": "Europe/Oslo"
-  },
-  "transitServiceStart": "-P2D",
-  "transitServiceEnd": "P5D",
-  "osmCacheDataInMem": "true",
   "staticParkAndRide": true,
   "staticBikeParkAndRide": true,
   "maxDataImportIssuesPerFile": 1000,
@@ -19,6 +12,36 @@
   "distanceBetweenElevationSamples": 25,
   "multiThreadElevationCalculations": true,
   "boardingLocationTags": [],
+  "transferParametersForMode": {
+    "CAR": {
+      "disableDefaultTransfers": true,
+      "carsAllowedStopMaxTransferDuration": "3h"
+    }
+  },
+  "transferRequests": [
+    {
+      "modes": "WALK"
+    },
+    {
+      "modes": "WALK",
+      "wheelchairAccessibility": {
+        "enabled": true
+      }
+    },
+    {
+      "modes": "BICYCLE"
+    },
+    {
+      "modes": "CAR"
+    }
+  ],
+  "osmDefaults": {
+    "osmTagMapping": "norway",
+    "timeZone": "Europe/Oslo"
+  },
+  "osmCacheDataInMem": "true",
+  "transitServiceStart": "-P2D",
+  "transitServiceEnd": "P5D",
   "netexDefaults": {
     "feedId": "RB",
     "sharedFilePattern": "_stops.*\\.xml",
