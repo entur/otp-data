@@ -267,30 +267,18 @@
       "feedId": "RB",
       "blockReadinessUntilInitialized": true,
       "fuzzyTripMatching": true
-    }
-
-    //    {
-//      "type": "siri-sx-updater",
-//      "frequency": "1m",
-//      "url": "http://realtime-cache.tst.entur.internal/sx",
-//      "feedId": "RB",
-//      "blockReadinessUntilInitialized": true,
-//      "headers": {
-//        "ET-Client-Name": "otp2-78b557cfb7-jxtc6-SX"
-//      },
-//      "earlyStart": "0s"
 //    },
+//    See README-RT for kubernetes forwarding
 //    {
 //      "type": "siri-et-google-pubsub-updater",
 //      "feedId": "RB",
 //      "reconnectPeriod": "5s",
 //      "initialGetDataTimeout": "1m20s",
 //      "topicProjectName": "ent-anshar-tst",
+//      "topicName": "protobuf.estimated_timetables",
 //      "subscriptionProjectName": "ent-otp2-tst",
-//      "topicName": "xml.estimated_timetables",
-//      "dataInitializationUrl": "http://realtime-cache.tst.entur.internal/et",
-//      "fuzzyTripMatching": true,
-//      "producerMetrics": true
-//    }
+//      "dataInitializationUrl": "http://localhost:8091/et",
+//      "fuzzyTripMatching": true
+    }
   ]
 }

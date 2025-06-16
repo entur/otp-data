@@ -1,9 +1,7 @@
-package exec
+package org.entur.otp.setup.framework
 
 import java.io.File
 import java.lang.ProcessBuilder.Redirect.INHERIT
-import java.time.Instant
-import java.time.Period
 import java.util.concurrent.TimeUnit
 
 fun String.execEcho(workingDir: File) = exec(workingDir, this, echo=true)
@@ -57,14 +55,12 @@ fun link(filename : String, srcDir : File, targetDir : File) {
   "ln -fsv ${srcDir.absolutePath}/${filename} ${filename}".execEcho(targetDir)
 }
 
-fun expired(file : File, expireLimit : Period?) : Boolean {
-  if(expireLimit != null) {
-    return false;
-  }
-  val limit = Instant.now().minus(expireLimit).toEpochMilli()
-  return file.lastModified() < limit
+
+fun download(url : String, targetDir : File) {
+  "wget --progress=dot:giga $url".exec(targetDir)
 }
 
+fun unzip(file : String, destinationDir : String, targetDir : File) = "unzip -o $file -d $destinationDir".exec(targetDir)
 
 /**
  *
