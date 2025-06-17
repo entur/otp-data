@@ -1,7 +1,10 @@
+# Snippets to setup OTP Realtime feeds
 
-Config from Vincent
 
-{
+## Siri SX/ET router config
+
+```
+    {
       "type": "siri-sx-updater",
       "frequency": "60s",
       "url": "https://api.entur.io/realtime/v1/services-cache",
@@ -23,8 +26,10 @@ Config from Vincent
       "dataInitializationUrl": "http://localhost:8091/et",
       "fuzzyTripMatching": true
     }
+```
 
-KUBERNETES DOC
+
+### Kubernetes doc
 
 https://kubernetes.io/docs/reference/kubectl/quick-reference/
 

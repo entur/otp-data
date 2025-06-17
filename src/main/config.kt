@@ -33,7 +33,7 @@ fun config(): Config = Config(
         )
     ),
     cases = SetupCaseParser.parse(),
-    // Entur Netex environment: dev or production
+    // Entur Netex environment: "dev" or "production"
     env = mapOf(Pair("en-netex-env", "production"))
 )
 
