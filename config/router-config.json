@@ -1,28 +1,27 @@
 {
-  "configVersion": "v2.8.0-entur-71 - STAGEING, 16-MAY-2025",
+  "configVersion": "v2.9.0-entur-76-STAGING-2025-11-11",
   "server": {
     "apiProcessingTimeout": "20s",
     "traceParameters": [
       {
         "httpRequestHeader": "X-Correlation-ID",
         "httpResponseHeader": "X-Correlation-ID",
-        "logKey": "correlationId",
+        "logKey" : "correlationId",
         "generateIdIfMissing": true
-      },
-      {
-        "httpRequestHeader": "ET-Client-Name",
+      }, {
+        "httpRequestHeader" : "ET-Client-Name",
         "logKey": "etClientName"
       }
     ]
   },
   "routingDefaults": {
     "streetRoutingTimeout": "5s",
-    "numItineraries": 12,
+    "numItineraries" : 12,
     "transferPenalty": 0,
     "turnReluctance": 1.0,
     "elevatorBoardTime": 90,
     "elevatorBoardCost": 90,
-    "elevatorHopTime": 20,
+    "elevatorHopTime" : 20,
     "elevatorHopCost": 20,
     "bicycle": {
       "speed": 5,
@@ -35,7 +34,7 @@
         "cost": 120
       }
     },
-    "car": {
+    "car" : {
       "reluctance": 10,
       "decelerationSpeed": 2.9,
       "accelerationSpeed": 2.9,
@@ -51,7 +50,7 @@
     },
     "wheelchairAccessibility": {
       "trip": {
-        "onlyConsiderAccessible": false
+        "onlyConsiderAccessible" : false
       },
       "stop": {
         "onlyConsiderAccessible": false
@@ -62,7 +61,7 @@
     },
     "otherThanPreferredRoutesPenalty": 300,
     "transferSlack": 120,
-    "boardSlackForMode": {
+    "boardSlackForMode" : {
       "AIRPLANE": "35m"
     },
     "alightSlackForMode": {
@@ -86,7 +85,7 @@
     },
     "ignoreRealtimeUpdates": false,
     "geoidElevation": false,
-    "maxJourneyDuration": "36h",
+    "maxJourneyDuration" : "36h",
     "drivingDirection": "right",
     "transferOptimization": {
       "optimizeTransferWaitTime": true,
@@ -101,18 +100,15 @@
           "modes": [
             "AIRPLANE"
           ]
-        },
-        {
+        }, {
           "subModes": [
             "localCarFerry"
           ]
-        },
-        {
+        }, {
           "agencies": [
             "RB:FLT:Authority:FLT"
           ]
-        },
-        {
+        }, {
           "subModes": [
             "highSpeedRail",
             "regionalRail",
@@ -125,8 +121,7 @@
             "crossCountryRail",
             "railReplacementBus"
           ]
-        },
-        {
+        }, {
           "agencies": [
             "RB:ATU:Authority:1",
             "RB:BOR:Authority:1",
@@ -135,24 +130,20 @@
             "RB:TID:Authority:TID",
             "RB:UNI:Authority:UNI"
           ]
-        },
-        {
+        }, {
           "agencies": [
             "RB:VYB:Authority:1",
             "RB:VYX:Authority:1"
           ]
-        },
-        {
+        }, {
           "agencies": [
             "RB:FLI:Authority:FlixMobility"
           ]
-        },
-        {
+        }, {
           "agencies": [
             "RB:NBU:Authority:002"
           ]
-        },
-        {
+        }, {
           "agencies": [
             "RB:NWY:Authority:d1ea7af1-3c2a-4825-893f-21408ef08480"
           ]
@@ -167,13 +158,13 @@
       "minTransitTimeCoefficient": 0.5,
       "minWaitTimeCoefficient": 0.5,
       "minWindow": "1h",
-      "maxWindow": "5h"
+      "maxWindow" : "5h"
     },
     "stopBoardAlightDuringTransferCost": {
       "DISCOURAGED": 1500,
       "ALLOWED": 75,
       "RECOMMENDED": 30,
-      "PREFERRED": 0
+      "PREFERRED" : 0
     }
   },
   "flex": {
@@ -181,84 +172,30 @@
     "maxFlexTripDuration": "1h15m"
   },
 //  "vehicleRentalServiceDirectory": {
-//    "url": "http://mobility-cache.tst.entur.internal/gbfs-internal",
+//    "url": "http://mobility-cache.tst.entur.internal/gbfs-internal/v3/manifest.json",
 //    "sourcesName": "systems",
 //    "updaterUrlName": "url",
 //    "updaterNetworkName": "id",
 //    "headers": {
-//      "ET-Client-Name": "entur-otp2"
+//      "ET-Client-Name" : "entur-otp2"
 //    },
 //    "networks": [
 //      {
 //        "network": "default-network"
-//      },
-//      {
-//        "network": "voi"
-//      },
-//      {
-//        "network": "boltoslo"
-//      },
-//      {
-//        "network": "boltlillestrom",
+//      }, {
+//        "network": "voioslo",
 //        "geofencingZones": false
-//      },
-//      {
-//        "network": "boltfredrikstad"
-//      },
-//      {
-//        "network": "boltsarpsborg"
-//      },
-//      {
-//        "network": "boltbergen"
-//      },
-//      {
-//        "network": "boltdrammen",
-//        "geofencingZones": false
-//      },
-//      {
-//        "network": "boltgjovik"
-//      },
-//      {
-//        "network": "bolthamar"
-//      },
-//      {
-//        "network": "boltlillehammer"
-//      },
-//      {
-//        "network": "boltkristiansand"
-//      },
-//      {
-//        "network": "tierbaerum"
-//      },
-//      {
-//        "network": "tierstavanger",
-//        "geofencingZones": false
-//      },
-//      {
-//        "network": "tierasker",
-//        "geofencingZones": false
-//      },
-//      {
-//        "network": "tierlillestrom",
-//        "geofencingZones": false
-//      },
-//      {
-//        "network": "tierlorenskog"
-//      },
-//      {
-//        "network": "tiertrondheim"
 //      }
 //    ]
 //  },
   "transmodelApi": {
     "hideFeedId": true,
-    "maxNumberOfResultFields": 600000
+    "maxNumberOfResultFields" : 600000
   },
   "timetableUpdates": {
     "purgeExpiredData": false
   },
   "updaters": [
-    // SIRI ET updater
     {
       "type": "siri-et-updater",
       "url": "file://{{OTP_SETUP_PATH}}/rt",
@@ -267,18 +204,29 @@
       "feedId": "RB",
       "blockReadinessUntilInitialized": true,
       "fuzzyTripMatching": true
+    }
+//    {
+//      "type": "siri-sx-updater",
+//      "frequency": "1m",
+//      "url" : "http://realtime-cache.tst.entur.internal/sx",
+//      "feedId": "RB",
+//      "blockReadinessUntilInitialized": true,
+//      "headers": {
+//        "ET-Client-Name": "otp2-7965889b49-7hcc2-SX"
+//      },
+//      "earlyStart" : "0s"
 //    },
-//    See README-RT for kubernetes forwarding
 //    {
 //      "type": "siri-et-google-pubsub-updater",
-//      "feedId": "RB",
+//      "feedId" : "RB",
 //      "reconnectPeriod": "5s",
 //      "initialGetDataTimeout": "1m20s",
 //      "topicProjectName": "ent-anshar-tst",
-//      "topicName": "protobuf.estimated_timetables",
 //      "subscriptionProjectName": "ent-otp2-tst",
-//      "dataInitializationUrl": "http://localhost:8091/et",
-//      "fuzzyTripMatching": true
-    }
+//      "topicName" : "xml.estimated_timetables",
+//      "dataInitializationUrl": "http://realtime-cache.tst.entur.internal/et",
+//      "fuzzyTripMatching": true,
+//      "producerMetrics": true
+//    }
   ]
 }

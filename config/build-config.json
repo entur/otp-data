@@ -1,47 +1,44 @@
 {
-  "configVersion": "v2.8.0-entur-105",
-  "dataImportReport": true,
-  "subwayAccessTime": 0,
-  "embedRouterConfig": true,
-  "areaVisibility": true,
-  "platformEntriesLinking": true,
-  "staticParkAndRide": true,
-  "staticBikeParkAndRide": true,
-  "maxDataImportIssuesPerFile": 1000,
-  "maxTransferDuration": "30m",
-  "distanceBetweenElevationSamples": 25,
-  "multiThreadElevationCalculations": true,
-  "boardingLocationTags": [],
-  "transferParametersForMode": {
-    "CAR": {
-      "disableDefaultTransfers": true,
-      "carsAllowedStopMaxTransferDuration": "3h"
+  "configVersion" : "v2.9.0-entur-76-STAGING-2025-11-11",
+  "transitServiceStart": "-P2D",
+  "transitServiceEnd": "P10D",
+  "dataImportReport" : true,
+  "subwayAccessTime" : 0,
+  "embedRouterConfig" : true,
+  "areaVisibility" : true,
+  "platformEntriesLinking" : true,
+  "staticParkAndRide" : true,
+  "staticBikeParkAndRide" : true,
+  "maxDataImportIssuesPerFile" : 1000,
+  "maxTransferDuration" : "30m",
+  "distanceBetweenElevationSamples" : 25,
+  "multiThreadElevationCalculations" : true,
+  "boardingLocationTags" : [ "ref:NSR" ],
+  "transferParametersForMode" : {
+    "CAR" : {
+      "disableDefaultTransfers" : true,
+      "carsAllowedStopMaxTransferDuration" : "3h"
     }
   },
-  "transferRequests": [
+  "transferRequests" : [
+    { "modes" : "WALK" },
     {
-      "modes": "WALK"
-    },
-    {
-      "modes": "WALK",
-      "wheelchairAccessibility": {
-        "enabled": true
+      "modes" : "WALK",
+      "wheelchairAccessibility" : {
+        "enabled" : true
       }
     },
-    {
-      "modes": "BICYCLE"
-    },
-    {
-      "modes": "CAR"
-    }
+    // { "modes": "BICYCLE" },
+    { "modes" : "CAR" }
   ],
-  "osmDefaults": {
-    "osmTagMapping": "norway",
-    "timeZone": "Europe/Oslo"
+  "osmDefaults" : {
+    "osmTagMapping" : "norway",
+    "timeZone" : "Europe/Oslo"
   },
-  "osmCacheDataInMem": "true",
-  "transitServiceStart": "-P2D",
-  "transitServiceEnd": "P5D",
+  "osmCacheDataInMem" : "true",
+  //"dem" : [ {
+  //  "source" : "gs://ror-marduk-internal-test/kartverket/heightData/norge_dem_50m_33.tif"
+  //} ],
   "netexDefaults": {
     "feedId": "RB",
     "sharedFilePattern": "_stops.*\\.xml",
@@ -49,19 +46,17 @@
     "groupFilePattern": "(\\w{3})_.*\\.xml",
     "ignoreFareFrame": false
   },
+  "empiricalDelay" : {
+    "feeds" : [ {
+      "feedId" : "RB",
+      "source" : "gs://empirical_delay/"
+    } ]
+  },
 //  "emission": {
 //    "feeds": [
 //      {
 //        "feedId": "RB",
 //        "source": "gs://emissions-to-otp/emissions-to-otp.csv"
-//      }
-//    ]
-//  },
-//  "empiricalDelay": {
-//    "feeds": [
-//      {
-//        "feedId": "RB",
-//        "source": "gs://empirical_delay/"
 //      }
 //    ]
 //  },
