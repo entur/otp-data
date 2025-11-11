@@ -3,6 +3,7 @@
   "otpFeatures" : {
     "ActuatorAPI" : true,
     "Emission" : true,
+    "EmpiricalDelay": false,
     "FlexRouting" : true,
     "FloatingBike" : true,
     "Sorlandsbanen" : true,
