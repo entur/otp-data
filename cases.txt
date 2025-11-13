@@ -15,10 +15,10 @@ otp/fylker/trondelag         | norway | trondelag         | atb 50_Trondelag
 otp/fylker/nordland          | norway | nordland          | nor 18_Nordland
 otp/fylker/troms             | norway | troms             | tro 55_Troms
 otp/fylker/finnmark          | norway | finnmark          | fin 56_Finnmark
-otp/cases/railway_oslo       | norway | osl-oslo-drammen  | goa sjn vyg flt RailStations
-otp/cases/flytoget           | norway | osl-oslo-drammen  | flt RailStations 03_Oslo 32_Akershus
-otp/cases/flybussen          | norway | osl-oslo-drammen  | nbu RailStations 03_Oslo 32_Akershus
+otp/cases/railway_oslo       | norway | osl_oslo_drammen  | goa sjn vyg flt RailStations
+otp/cases/flytoget           | norway | osl_oslo_drammen  | flt RailStations 03_Oslo 32_Akershus
+otp/cases/flybussen          | norway | osl_oslo_drammen  | nbu RailStations 03_Oslo 32_Akershus
 otp/cases/stavanger          | norway | stavanger_sandnes | kol 11_Rogaland
-otp/cases/empirical-delay    | norway | oslo_akershus     | vyg RailStations
-otp/cases/missing-transfer   | norway | osl-oslo-drammen  | flt 03_Oslo 32_Akershus RailStations
-otp/cases/show-extra-journey | norway | oslo_akershus     | vyg RailStations
+otp/cases/empirical_delay    | norway | oslo_akershus     | vyg RailStations
+otp/cases/missing_transfer   | norway | osl_oslo_drammen  | flt 03_Oslo 32_Akershus RailStations
+otp/cases/show_extra_journey | norway | oslo_akershus     | vyg RailStations
