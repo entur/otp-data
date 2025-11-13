@@ -34,7 +34,7 @@ I added a Swing UI (yes it old) to run this instead of a cli. Add a cli if you p
 
 1. Add a new row in the [cases.txt](cases.txt)
 2. Use https://geojson.io/ to create a GEOJSON to use for filtering OSM data. Put the geojson 
-   file in the `osm/geojson` directory. Give a descriptive name. If no GoeJson file is provided, 
+   file in the `geojson` directory. Give a descriptive name. If no GoeJson file is provided, 
    the setup script will generate a link to the _norway-latest.osm.pbf_ in the target directory. 
 3. The `src/main/config.kt` contains the configuration for the download locations. GTFS is not 
    supported, but should be easy to add.

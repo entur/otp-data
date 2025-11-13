@@ -7,10 +7,10 @@ data class SetupCase(
      */
     val path: String,
     val osm: List<WebResource>,
-    val geojson: List<String>,
+    val geojson: List<FileResource>,
     val netex: List<WebResource>
 ) {
   override fun toString(): String {
-    return "SetupCase(\n  path='$path', \n  osm=$osm, \n  geojson=$geojson, \n  transit=$netex\n)"
+    return "SetupCase(\n  path='$path', \n  osm=$osm, \n  geojson=${geojson}, \n  transit=$netex\n)"
   }
 }

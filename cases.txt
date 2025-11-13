@@ -1,21 +1,24 @@
-NAME                       | OSM    | GEOJSON           | TRANSIT FEEDS
-otp/norway                 | norway |                   | norway
-otp/fylker/ostfold         | norway | ostfold           | ost 31_Ostfold
-otp/fylker/oslo            | norway | oslo              | rut 03_Oslo
-otp/fylker/oslo_akershus   | norway | oslo_akershus     | rut 03_Oslo 32_Akershus
-otp/fylker/innlandet       | norway | innlandet         | inn 34_Innlandet
-otp/fylker/buskerud        | norway | buskerud          | bra 33_Buskerud
-otp/fylker/vestfold        | norway | vestfold          | vkt 39_Vestfold
-otp/fylker/telemark        | norway | telemark          | tel 40_Telemark
-otp/fylker/agder           | norway | agder             | akt 42_Agder
-otp/fylker/rogaland        | norway | rogaland          | kol 11_Rogaland
-otp/fylker/vestland        | norway | vestland          | sky sof 46_Vestland
-otp/fylker/more_og_romsdal | norway | more_og_romsdal   | mor 15_More%20og%20Romsdal
-otp/fylker/trondelag       | norway | trondelag         | atb 50_Trondelag
-otp/fylker/nordland        | norway | nordland          | nor 18_Nordland
-otp/fylker/troms           | norway | troms             | tro 55_Troms
-otp/fylker/finnmark        | norway | finnmark          | fin 56_Finnmark
-otp/cases/railway_oslo     | norway | osl-oslo-drammen  | goa sjn vyg flt RailStations
-otp/cases/flytoget         | norway | osl-oslo-drammen  | flt RailStations 03_Oslo 32_Akershus
-otp/cases/flybussen        | norway | osl-oslo-drammen  | nbu RailStations 03_Oslo 32_Akershus
-otp/cases/stavanger        | norway | stavanger_sandnes | kol 11_Rogaland
+NAME                         | OSM    | GEOJSON           | TRANSIT FEEDS
+otp/norway                   | norway |                   | norway
+otp/fylker/ostfold           | norway | ostfold           | ost 31_Ostfold
+otp/fylker/oslo              | norway | oslo              | rut 03_Oslo
+otp/fylker/oslo_akershus     | norway | oslo_akershus     | rut 03_Oslo 32_Akershus
+otp/fylker/innlandet         | norway | innlandet         | inn 34_Innlandet
+otp/fylker/buskerud          | norway | buskerud          | bra 33_Buskerud
+otp/fylker/vestfold          | norway | vestfold          | vkt 39_Vestfold
+otp/fylker/telemark          | norway | telemark          | tel 40_Telemark
+otp/fylker/agder             | norway | agder             | akt 42_Agder
+otp/fylker/rogaland          | norway | rogaland          | kol 11_Rogaland
+otp/fylker/vestland          | norway | vestland          | sky sof 46_Vestland
+otp/fylker/more_og_romsdal   | norway | more_og_romsdal   | mor 15_More%20og%20Romsdal
+otp/fylker/trondelag         | norway | trondelag         | atb 50_Trondelag
+otp/fylker/nordland          | norway | nordland          | nor 18_Nordland
+otp/fylker/troms             | norway | troms             | tro 55_Troms
+otp/fylker/finnmark          | norway | finnmark          | fin 56_Finnmark
+otp/cases/railway_oslo       | norway | osl-oslo-drammen  | goa sjn vyg flt RailStations
+otp/cases/flytoget           | norway | osl-oslo-drammen  | flt RailStations 03_Oslo 32_Akershus
+otp/cases/flybussen          | norway | osl-oslo-drammen  | nbu RailStations 03_Oslo 32_Akershus
+otp/cases/stavanger          | norway | stavanger_sandnes | kol 11_Rogaland
+otp/cases/empirical-delay    | norway | oslo_akershus     | vyg RailStations
+otp/cases/missing-transfer   | norway | osl-oslo-drammen  | flt 03_Oslo 32_Akershus RailStations
+otp/cases/show-extra-journey | norway | oslo_akershus     | vyg RailStations

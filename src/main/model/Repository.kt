@@ -1,7 +1,7 @@
 package org.entur.otp.setup.model
 
-import org.entur.otp.setup.model.ConfResource
-import org.entur.otp.setup.model.Config
+import java.io.File
+
 
 class Repository(val config: Config) {
 
@@ -10,13 +10,14 @@ class Repository(val config: Config) {
     if (setupCase == null) {
       throw Exception("Setup case not found: '$path'")
     }
-    val osm = mapResource("osm", setupCase.osm, config.osm, env)
-    val transit = mapResource("transit", setupCase.netex, config.netex, env)
+    val osm = mapToWebResource("osm", setupCase.osm, config.osm, env)
+    val transit = mapToWebResource("transit", setupCase.netex, config.netex, env)
+    val geojson = mapToFileResource("geojson", setupCase.geojson)
 
-    return SetupCase(path, osm, setupCase.geojson, transit)
+    return SetupCase(path, osm, geojson, transit)
   }
 
-  private fun mapResource(
+  private fun mapToWebResource(
       type: String,
       ids: List<String>,
       c: List<ConfResource>,
@@ -27,9 +28,25 @@ class Repository(val config: Config) {
     for (id in ids) {
       val r = c.map { it.find(id, env) }.filter { it != null }
       if (r.isEmpty()) {
-        throw Exception("Error! No ${type} configuration found for id: '$id'")
+        throw Exception("Error! No $type configuration found for id: '$id'")
       }
       r.first()?.let { result.add(it) }
+    }
+    return result
+  }
+
+  private fun mapToFileResource(
+      type: String,
+      ids: List<String>
+  ) : List<FileResource> {
+    val result: ArrayList<FileResource> = arrayListOf()
+    for (id in ids) {
+      result.add(
+          when (type) {
+            "geojson" -> FileResource(id, type, File(type))
+            else -> throw IllegalArgumentException("Unknown type: $type")
+          }
+      )
     }
     return result
   }

@@ -22,41 +22,41 @@ object SetupService {
     }
   }
 
-  fun downloadAndFilterOsmFiles(osmResources: List<WebResource>, geoFilters : List<String>, targetDir: File) {
+  fun downloadAndFilterOsmFiles(osmResources: List<WebResource>, geojson : List<FileResource>, targetDir: File) {
     val expire = Period.ofDays(14)
     val osmTarget = File("osm")
 
     osmResources.forEach { it.downloadFile(osmTarget, expire) }
 
-    if(geoFilters.isEmpty()) {
+    if(geojson.isEmpty()) {
       println("Create link in target for each osm file")
       osmResources.forEach { link(it.file, osmTarget, targetDir) }
     }
     else if(osmResources.size == 1) {
       val osm = osmResources.first()
-      println("Filter the osm file ${osm.file} using geojson filters: $geoFilters")
-      geoFilters.forEach { filterOsm(osm, it, osmTarget, targetDir) }
+      println("Filter the osm file ${osm.file} using geojson: $geojson")
+      geojson.forEach { filterOsm(osm, it, osmTarget, targetDir) }
     }
-    else if(geoFilters.size == 1) {
-      val filter = geoFilters.first()
+    else if(geojson.size == 1) {
+      val filter = geojson.first()
       println("Filter each osm file using the $filter geojson filter.")
-      osmResources.forEach { filterOsm(it, geoFilters.first(), osmTarget, targetDir) }
+      osmResources.forEach { filterOsm(it, geojson.first(), osmTarget, targetDir) }
     }
-    else if(geoFilters.size == osmResources.size) {
+    else if(geojson.size == osmResources.size) {
       println("Filter each osm file using the corresponding geojson filter.")
-      for (i in 0..geoFilters.size-1) {
-        filterOsm(osmResources[i], geoFilters[i], osmTarget, targetDir)
+      for (i in 0..geojson.size-1) {
+        filterOsm(osmResources[i], geojson[i], osmTarget, targetDir)
       }
     }
     else {
       throw Exception(
           "Inconsistent data. Expected zero or one geojson file OR a geojson file for each " +
-              "osm file. Number of OSM/GEOJSON files: ${osmResources.size}/${geoFilters.size}."
+              "osm file. Number of OSM/GEOJSON files: ${osmResources.size}/${geojson.size}."
       )
     }
   }
 
-  fun filterOsm(osm: WebResource, geojson: String, osmTarget: File, targetDir: File) {
+  fun filterOsm(osm: WebResource, geojson: FileResource, osmTarget: File, targetDir: File) {
     val target = File(targetDir,"${osm.name}_${geojson}.osm.pbf")
     val source = osm.asFile(osmTarget)
     println("Filter ${source.name} using $geojson polygon...")
@@ -70,7 +70,7 @@ object SetupService {
         return
       }
     }
-    val geojsonFile = File(File(osmTarget, "geojson"), "${geojson}.geojson").absolutePath
+    val geojsonFile = geojson.asFile().absolutePath
     val tempFile = File(targetDir, "temp.osm.pbf")
 
     "osmium extract --overwrite -v --polygon \"$geojsonFile\" \"${source.absolutePath}\" -o ${tempFile.name}".execEcho(targetDir)
