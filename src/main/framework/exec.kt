@@ -30,7 +30,7 @@ fun rmDir(dirname : String, targetDir : File) {
     println("Target dir does not exist: $targetDir")
     return
   }
-  "rm -Rf $dirname".execEcho(targetDir)
+  targetDir.deleteRecursively()
 }
 
 fun mkDirs(targetDir : File) {
