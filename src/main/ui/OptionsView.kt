@@ -3,37 +3,32 @@ package org.entur.otp.setup.ui
 import org.entur.otp.setup.model.CONFIG_ROOT_DIR
 import java.awt.Color
 import java.awt.Dimension
+import java.awt.Insets
 import javax.swing.Box
 import javax.swing.JCheckBox
 import javax.swing.JComboBox
+import javax.swing.JComponent
+import javax.swing.JLabel
+import javax.swing.JTextArea
 
-private const val NO_CONFIG = "No config"
+private const val NO_CONFIG = "<Select %s config>"
 
 class OptionsView {
   private val panel: Box = Box.createVerticalBox()
   private val includeNetexChk: JCheckBox = JCheckBox(" 🚌 Netex (download and unpack)", true)
   private val includeOsmChk: JCheckBox = JCheckBox(" 🌍 OSM (download and link/filter)", false)
-  private val configFilesCombo: JComboBox<String>
+  private val defaultConfigCombo: JComboBox<String> = createConfigComboBox(NO_CONFIG.format("DEFAULT"))
+  private val mainConfigCombo: JComboBox<String> = createConfigComboBox(NO_CONFIG.format("MAIN"))
 
   fun includeNetex() : Boolean = includeNetexChk.isSelected
   fun includeOsm() : Boolean = includeOsmChk.isSelected
-  fun configDirectory() : String? {
-    val selected = configFilesCombo.selectedItem as? String
-    return if (selected == NO_CONFIG) null else selected
-  }
+  fun defaultConfig() : String? = selectedConfig(defaultConfigCombo)
+  fun mainConfig() : String? = selectedConfig(mainConfigCombo)
 
   init {
     panel.alignmentY = 0.5f
     panel.background = Color(0,0,0, 0)
-    configFilesCombo = JComboBox(arrayOf(NO_CONFIG) + configDirectories())
-    configFilesCombo.selectedItem = NO_CONFIG
-    configFilesCombo.maximumSize = Dimension(160, 30)
 
-    listOf(includeNetexChk, includeOsmChk, configFilesCombo).forEach { it.alignmentX = 0.0f }
-
-    panel.add(includeNetexChk)
-    panel.add(includeOsmChk)
-    panel.add(configFilesCombo)
 
     includeNetexChk.toolTipText = """
       Download NeTEx files and unzip them into the nextex folder.
@@ -43,16 +38,28 @@ class OptionsView {
       Download OSM file if the file is more than 14 days old. Then filter
       the OSM file using the specified geojson.
     """.trimIndent()
-    configFilesCombo.toolTipText = """
+    defaultConfigCombo.toolTipText = """
       Copy the config files from the selected directory into the setup case.
       Edit the files to adjust it to your test. For example adding real-time updaters.
+      
+      If you select both a 'default' and a 'main' configuration set, then the the default 
+      is copied first and the main next - replacing exisiting files.
     """.trimIndent()
+    mainConfigCombo.toolTipText = defaultConfigCombo.toolTipText
+
+    val verticalSep = Box.createVerticalStrut(10) as JComponent
+    val configLbl = JLabel("Copy config files. MAIN files will overwrite DEFAULT files, if selected.")
+
+    listOf(includeNetexChk, includeOsmChk, verticalSep, configLbl, defaultConfigCombo, mainConfigCombo).forEach {
+      it.alignmentX = 0.0f
+      panel.add(it)
+    }
   }
 
   fun panel() : Box = panel
 
   /** Get list of config directories */
-  fun configDirectories() : Array<String> {
+  private fun configDirectories() : Array<String> {
     if (CONFIG_ROOT_DIR.exists() && CONFIG_ROOT_DIR.isDirectory) {
       val configDirs = CONFIG_ROOT_DIR.listFiles()
           ?.filter { it.isDirectory }
@@ -65,5 +72,16 @@ class OptionsView {
       }
     }
     return arrayOf()
+  }
+
+  private fun selectedConfig(combo: JComboBox<String>) : String? {
+    return if(combo.selectedIndex == 0) null else combo.selectedItem as? String
+  }
+
+  private fun createConfigComboBox(notSelectedText : String) : JComboBox<String> {
+    val combo = JComboBox(arrayOf(notSelectedText) + configDirectories())
+    combo.selectedItem = NO_CONFIG
+    combo.maximumSize = Dimension(200, 30)
+    return combo
   }
 }

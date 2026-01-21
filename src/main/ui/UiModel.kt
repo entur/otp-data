@@ -4,5 +4,6 @@ interface UiModel {
   fun selectedCase() : String
   fun includeNetex() : Boolean
   fun includeOsm() : Boolean
-  fun configDirectory() : String?
+  fun defaultConfig() : String?
+  fun mainConfig() : String?
 }

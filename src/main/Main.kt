@@ -32,7 +32,10 @@ fun run(input : UiModel, config: Config) {
     SetupService.downloadAndFilterOsmFiles(case.osm, case.geojson, targetDir)
   }
 
-  input.configDirectory()?.let {
+  input.defaultConfig()?.let {
+    SetupService.copyConfigFiles(it, targetDir)
+  }
+  input.mainConfig()?.let {
     SetupService.copyConfigFiles(it, targetDir)
   }
 

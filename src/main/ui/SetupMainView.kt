@@ -41,8 +41,8 @@ class SetupMainView(
   override fun selectedCase() = casesView.selectedCase
   override fun includeNetex() = options.includeNetex()
   override fun includeOsm() = options.includeOsm()
-  override fun configDirectory() = options.configDirectory()
-
+  override fun defaultConfig(): String? = options.defaultConfig()
+  override fun mainConfig(): String? = options.mainConfig()
 
   private fun runButton() : JButton {
     val btn = JButton(" ❯ Run ")
