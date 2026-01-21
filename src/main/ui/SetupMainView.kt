@@ -6,7 +6,10 @@ import java.awt.GridBagConstraints
 import java.awt.GridBagLayout
 import java.awt.Insets
 import java.util.function.Consumer
-import javax.swing.*
+import javax.swing.JButton
+import javax.swing.JFrame
+import javax.swing.JPanel
+import javax.swing.JScrollPane
 
 class SetupMainView(
     cases : List<SetupCaseConfig>,
@@ -25,8 +28,8 @@ class SetupMainView(
     innerPanel.setLayout(layout)
     innerPanel.setBackground(UiConstants.BACKGROUND)
     innerPanel.add(casesView.panel(), gbc())
-    innerPanel.add(options.panel, gbc(weightx = 0.0, weighty = 0.0, fill = GridBagConstraints.NONE))
-    innerPanel.add(runButton(), gbc(fill = GridBagConstraints.NONE))
+    innerPanel.add(options.panel(), gbc(weightx = 0.0, weighty = 0.0, fill = GridBagConstraints.CENTER))
+    innerPanel.add(runButton(), gbc(fill = GridBagConstraints.HORIZONTAL))
 
     mainFrame.setContentPane(JScrollPane(innerPanel))
     mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
@@ -38,7 +41,7 @@ class SetupMainView(
   override fun selectedCase() = casesView.selectedCase
   override fun includeNetex() = options.includeNetex()
   override fun includeOsm() = options.includeOsm()
-  override fun includeConfigFiles() = options.includeConfigFiles()
+  override fun configDirectory() = options.configDirectory()
 
 
   private fun runButton() : JButton {
@@ -66,7 +69,7 @@ class SetupMainView(
         weightx,
         weighty,
         GridBagConstraints.CENTER,
-        GridBagConstraints.HORIZONTAL,
+        fill,
         insets,
         ipadx,
         0

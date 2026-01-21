@@ -31,9 +31,11 @@ fun run(input : UiModel, config: Config) {
   if(input.includeOsm()) {
     SetupService.downloadAndFilterOsmFiles(case.osm, case.geojson, targetDir)
   }
-  if(input.includeConfigFiles()) {
-    SetupService.copyConfigFiles(targetDir)
+
+  input.configDirectory()?.let {
+    SetupService.copyConfigFiles(it, targetDir)
   }
+
   File(targetDir, "rt").mkdir()
 
   println("\nSETUP DONE!")

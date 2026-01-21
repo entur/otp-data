@@ -10,9 +10,13 @@ import java.time.Period
 
 object SetupService {
 
-  fun copyConfigFiles(targetDir: File) {
-    println("\nCopy config paths to ${targetDir.path}")
-    val configDir = File("config")
+  fun copyConfigFiles(configDirName: String, targetDir: File) {
+    println("\nCopy config files from '$configDirName' to ${targetDir.path}")
+    val configDir = File(CONFIG_ROOT_DIR, configDirName)
+    if (!configDir.exists() || !configDir.isDirectory) {
+      println("  Warning: Config directory '${configDir.path}' does not exist")
+      return
+    }
     val configFiles = configDir.listFiles { it.name.endsWith("-config.json") }
     configFiles?.forEach { file ->
       println("  - ${file.name}")
