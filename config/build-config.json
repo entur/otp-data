@@ -1,44 +1,63 @@
 {
-  "configVersion" : "v2.9.0-entur-76-STAGING-2025-11-11",
-  "transitServiceStart": "-P2D",
-  "transitServiceEnd": "P10D",
-  "dataImportReport" : true,
-  "subwayAccessTime" : 0,
-  "embedRouterConfig" : true,
-  "areaVisibility" : true,
-  "platformEntriesLinking" : true,
-  "staticParkAndRide" : true,
-  "staticBikeParkAndRide" : true,
-  "maxDataImportIssuesPerFile" : 1000,
-  "maxTransferDuration" : "30m",
-  "distanceBetweenElevationSamples" : 25,
-  "multiThreadElevationCalculations" : true,
-  "boardingLocationTags" : [ "ref:NSR" ],
-  "transferParametersForMode" : {
-    "CAR" : {
-      "disableDefaultTransfers" : true,
-      "carsAllowedStopMaxTransferDuration" : "3h"
+  "configVersion": "COPY STAGING 2026-01-21 v2.9.0-entur-166",
+  "dataImportReport": true,
+  "subwayAccessTime": 0,
+  "embedRouterConfig": true,
+  "areaVisibility": true,
+  "platformEntriesLinking": true,
+  "staticParkAndRide": true,
+  "staticBikeParkAndRide": true,
+  "maxDataImportIssuesPerFile": 1000,
+  "maxTransferDuration": "30m",
+  "distanceBetweenElevationSamples": 25,
+  "multiThreadElevationCalculations": true,
+  "boardingLocationTags": [
+    "ref:NSR"
+  ],
+  "transferParametersForMode": {
+    "CAR": {
+      "disableDefaultTransfers": true,
+      "carsAllowedStopMaxTransferDuration": "3h"
     }
   },
-  "transferRequests" : [
-    { "modes" : "WALK" },
+  "transferRequests": [
     {
-      "modes" : "WALK",
-      "wheelchairAccessibility" : {
-        "enabled" : true
+      "modes": "WALK"
+    },
+    {
+      "modes": "WALK",
+      "wheelchairAccessibility": {
+        "enabled": true
       }
     },
-    // { "modes": "BICYCLE" },
-    { "modes" : "CAR" }
+    {
+      "modes": "CAR"
+    }
   ],
-  "osmDefaults" : {
-    "osmTagMapping" : "norway",
-    "timeZone" : "Europe/Oslo"
+  "osmDefaults": {
+    "osmTagMapping": "norway",
+    "timeZone": "Europe/Oslo"
   },
-  "osmCacheDataInMem" : "true",
-  //"dem" : [ {
-  //  "source" : "gs://ror-marduk-internal-test/kartverket/heightData/norge_dem_50m_33.tif"
-  //} ],
+  "osmCacheDataInMem": "true",
+// READ OSM DATA FROM DEFAULT LOCATION, NOT GCS
+//  "osm": [
+//    {
+//      "source": "gs://marduk-test/osm/norway-latest.osm.pbf"
+//    },
+//    {
+//      "source": "gs://marduk-test/osm/static/osm_static_sweden_extract.pbf"
+//    },
+//    {
+//      "source": "gs://marduk-test/osm/static/osm_static_sweden_storlien_extract.pbf"
+//    }
+//  ],
+// ENABLED IN STAGING, BUT LOADING ELEVATION DATA IS NORMALY NOT REQUIERED FOR LOCAL DEBUGGING
+//  "dem": [
+//    {
+//      "source": "gs://ror-marduk-internal-test/kartverket/heightData/norge_dem_50m_33.tif"
+//    }
+//  ],
+// READ NETEX FILES FROM LOCAL DISK, NOT GC STORAGE
   "netexDefaults": {
     "feedId": "RB",
     "sharedFilePattern": "_stops.*\\.xml",
@@ -46,12 +65,18 @@
     "groupFilePattern": "(\\w{3})_.*\\.xml",
     "ignoreFareFrame": false
   },
-  "empiricalDelay" : {
-    "feeds" : [ {
-      "feedId" : "RB",
-      "source" : "gs://empirical_delay/"
-    } ]
-  },
+// ENABLED IN STAGING - COMMENT IN IF NEEDED
+//  "transitFeeds": [
+//    {
+//      "type": "netex",
+//      "source": "gs://marduk-test/outbound/netex/rb_norway-aggregated-netex.zip",
+//      "sharedFilePattern": "_stops.xml",
+//      "sharedGroupFilePattern": "_(\\w{3})(_flexible)?_shared_data.xml",
+//      "groupFilePattern": "(\\w{3})_.*\\.xml",
+//      "feedId": "RB",
+//      "ignoreFareFrame": false
+//    }
+//  ],
 //  "emission": {
 //    "feeds": [
 //      {
@@ -60,6 +85,15 @@
 //      }
 //    ]
 //  },
+//  "empiricalDelay": {
+//    "feeds": [
+//      {
+//        "feedId": "RB",
+//        "source": "gs://empirical_delay/"
+//      }
+//    ]
+//  },
+  // STORE GRAPHS LOCALY - STAGING USES ABSOLUTE PATHS TO LATEST GRAPH
   "streetGraph": "streetGraph-${otp.serialization.version.id}.obj",
   "graph": "graph-otp2-${otp.serialization.version.id}.obj",
   "buildReportDir": "report"

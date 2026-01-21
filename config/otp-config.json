@@ -1,20 +1,23 @@
 {
-  "configVersion" : "v2.9.0-entur-76-STAGING-2025-11-11",
+  "configVersion" : "COPY STAGING 2026-01-21 v2.9.0-entur-166",
   "otpFeatures" : {
     "ActuatorAPI" : true,
-    "ConsiderPatternsForDirectTransfers" : true,
     "Emission" : true,
-    // EmpiricalDelay is on in STAGING and PROD
-    "EmpiricalDelay" : false,
+    "EmpiricalDelay" : true,
     "FlexRouting" : true,
+    // GCS is OFF in STAGING
     "GoogleCloudStorage" : true,
     "FloatingBike" : true,
+    "GtfsGraphQlApi" : true,
     "IncludeEmptyRailStopsInTransfers" : true,
+    "IncludeStopsUsedRealTimeInTransfers" : true,
     "MultiCriteriaGroupMaxFilter" : true,
     "OptimizeTransfers" : true,
     "ParallelRouting" : false,
     "ReportApi" : true,
     "Sorlandsbanen" : true,
-    "TransferConstraints" : true
+    "TransferConstraints" : true,
+    "CarPooling" : false,
+    "HttpResponseTimeMetrics" : true
   }
 }
