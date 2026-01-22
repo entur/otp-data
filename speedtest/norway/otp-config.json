@@ -1,0 +1,20 @@
+{
+  "configVersion" : "v2.9.0-entur-76-STAGING-2025-11-11",
+  "otpFeatures" : {
+    "ActuatorAPI" : true,
+    "ConsiderPatternsForDirectTransfers" : true,
+    "Emission" : true,
+    // EmpiricalDelay is on in STAGING and PROD
+    "EmpiricalDelay" : false,
+    "FlexRouting" : true,
+    "GoogleCloudStorage" : true,
+    "FloatingBike" : true,
+    "IncludeEmptyRailStopsInTransfers" : true,
+    "MultiCriteriaGroupMaxFilter" : true,
+    "OptimizeTransfers" : true,
+    "ParallelRouting" : false,
+    "ReportApi" : true,
+    "Sorlandsbanen" : true,
+    "TransferConstraints" : true
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "feedId" : "RB",
+  "testDate": "2026-01-23",
+  "graph": "../../otp/norway/graph-otp2-${otp.serialization.version.id}.obj"
+}
