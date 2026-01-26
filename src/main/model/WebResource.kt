@@ -7,16 +7,19 @@ import org.entur.otp.setup.framework.download
 import org.entur.otp.setup.framework.mkDirs
 import org.entur.otp.setup.framework.unzip
 
-data class WebResource(val name : String, val url: String, val file: String) {
+data class WebResource(val name : String, val url: String, val webFilename: String) {
 
-  fun asFile(dir : File) = File(dir, file)
+  val localFilename = webFilename.replace("%20", "-")
+
+  fun asFile(dir : File) = File(dir, localFilename)
+
   override fun toString(): String {
-    return "$name $url/$file"
+    return "$localFilename $url/$webFilename"
   }
 
   fun downloadNetexFile(targetDir : File, netexTargetDir : String, expire : Period? = null) {
     downloadFile(targetDir, expire)
-    unzip(file, netexTargetDir, targetDir)
+    unzip(localFilename, netexTargetDir, targetDir)
     asFile(targetDir).delete()
   }
 
@@ -28,12 +31,11 @@ data class WebResource(val name : String, val url: String, val file: String) {
         target.delete();
       }
       else {
-        println("Skip download, file is newer then ${expire?.days} days ($file).")
+        println("Skip download, file is newer then ${expire?.days} days ($webFilename).")
         return
       }
     }
-    println("Download '$file' ($url)")
-    download("$url/$file", targetDir)
+    println("Download '$webFilename' ($url)")
+    download("$url/$webFilename", localFilename, targetDir)
   }
-
 }

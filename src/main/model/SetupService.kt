@@ -34,11 +34,11 @@ object SetupService {
 
     if(geojson.isEmpty()) {
       println("Create link in target for each osm file")
-      osmResources.forEach { link(it.file, osmTarget, targetDir) }
+      osmResources.forEach { link(it.localFilename, osmTarget, targetDir) }
     }
     else if(osmResources.size == 1) {
       val osm = osmResources.first()
-      println("Filter the osm file ${osm.file} using geojson: $geojson")
+      println("Filter the osm file ${osm.localFilename} using geojson: $geojson")
       geojson.forEach { filterOsm(osm, it, osmTarget, targetDir) }
     }
     else if(geojson.size == 1) {
@@ -88,7 +88,7 @@ object SetupService {
     rmDir(netexTargetDir.name, targetDir)
 
     for (it in cases) {
-      println("Download ${it.url}/${it.file} ($targetDir)")
+      println("Download ${it.url}/${it.webFilename} ($targetDir)")
       it.downloadNetexFile(targetDir, netexTargetDir.name, expire)
     }
 

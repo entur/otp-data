@@ -55,9 +55,8 @@ fun link(filename : String, srcDir : File, targetDir : File) {
   "ln -fsv ${srcDir.absolutePath}/${filename} ${filename}".execEcho(targetDir)
 }
 
-
-fun download(url : String, targetDir : File) {
-  "wget --progress=dot:giga $url".exec(targetDir)
+fun download(url : String, targetName : String, targetDir : File) {
+  "wget --progress=dot:giga -O \"$targetName\" $url".exec(targetDir)
 }
 
 fun unzip(file : String, destinationDir : String, targetDir : File) = "unzip -o $file -d $destinationDir".exec(targetDir)
