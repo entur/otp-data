@@ -3,22 +3,20 @@ package org.entur.otp.setup.ui
 import org.entur.otp.setup.model.CONFIG_ROOT_DIR
 import java.awt.Color
 import java.awt.Dimension
-import java.awt.Insets
 import javax.swing.Box
 import javax.swing.JCheckBox
 import javax.swing.JComboBox
 import javax.swing.JComponent
 import javax.swing.JLabel
-import javax.swing.JTextArea
 
-private const val NO_CONFIG = "<Select %s config>"
+private const val NO_CONFIG = "<Select %s>"
 
 class OptionsView {
   private val panel: Box = Box.createVerticalBox()
   private val includeNetexChk: JCheckBox = JCheckBox(" 🚌 Netex (download and unpack)", true)
   private val includeOsmChk: JCheckBox = JCheckBox(" 🌍 OSM (download and link/filter)", false)
-  private val defaultConfigCombo: JComboBox<String> = createConfigComboBox(NO_CONFIG.format("DEFAULT"))
-  private val mainConfigCombo: JComboBox<String> = createConfigComboBox(NO_CONFIG.format("MAIN"))
+  private val defaultConfigCombo: JComboBox<String> = createConfigComboBox(NO_CONFIG.format("Default"), true)
+  private val mainConfigCombo: JComboBox<String> = createConfigComboBox(NO_CONFIG.format("Main"), false)
 
   fun includeNetex() : Boolean = includeNetexChk.isSelected
   fun includeOsm() : Boolean = includeOsmChk.isSelected
@@ -48,9 +46,14 @@ class OptionsView {
     mainConfigCombo.toolTipText = defaultConfigCombo.toolTipText
 
     val verticalSep = Box.createVerticalStrut(10) as JComponent
-    val configLbl = JLabel("Copy config files. MAIN files will overwrite DEFAULT files, if selected.")
+    val configLbl = JLabel("Copy config files. <Main> files will overwrite <Default> files, if selected.")
 
-    listOf(includeNetexChk, includeOsmChk, verticalSep, configLbl, defaultConfigCombo, mainConfigCombo).forEach {
+    var configBoxes = Box.createHorizontalBox();
+    configBoxes.add(defaultConfigCombo)
+    configBoxes.add(mainConfigCombo)
+    configBoxes.add(Box.createHorizontalGlue())
+
+    listOf(includeNetexChk, includeOsmChk, verticalSep, configLbl, configBoxes).forEach {
       it.alignmentX = 0.0f
       panel.add(it)
     }
@@ -59,12 +62,15 @@ class OptionsView {
   fun panel() : Box = panel
 
   /** Get list of config directories */
-  private fun configDirectories() : Array<String> {
+  private fun configDirectories(defaultConfig : Boolean) : Array<String> {
+    val defaultConfigs = listOf("dev", "staging", "prod")
+
     if (CONFIG_ROOT_DIR.exists() && CONFIG_ROOT_DIR.isDirectory) {
       val configDirs = CONFIG_ROOT_DIR.listFiles()
           ?.filter { it.isDirectory }
           ?.map { it.name }
           ?.sorted()
+          ?.filter{ defaultConfig xor !defaultConfigs.contains(it) }
           ?.toList()
 
       if(configDirs != null) {
@@ -78,10 +84,10 @@ class OptionsView {
     return if(combo.selectedIndex == 0) null else combo.selectedItem as? String
   }
 
-  private fun createConfigComboBox(notSelectedText : String) : JComboBox<String> {
-    val combo = JComboBox(arrayOf(notSelectedText) + configDirectories())
+  private fun createConfigComboBox(notSelectedText : String, defaultConfig : Boolean) : JComboBox<String> {
+    val combo = JComboBox(arrayOf(notSelectedText) + configDirectories(defaultConfig))
     combo.selectedItem = NO_CONFIG
-    combo.maximumSize = Dimension(200, 30)
+    combo.maximumSize = Dimension(160, 30)
     return combo
   }
 }
