@@ -21,4 +21,4 @@ otp/cases/flybussen          | norway | osl_oslo_drammen  | nbu RailStations 03_
 otp/cases/stavanger          | norway | stavanger_sandnes | kol 11_Rogaland
 otp/cases/empirical_delay    | norway | oslo_akershus     | vyg RailStations
 otp/cases/missing_transfer   | norway | osl_oslo_drammen  | flt 03_Oslo 32_Akershus RailStations
-otp/cases/show_extra_journey | norway | oslo_akershus     | vyg RailStations
+otp/cases/havila             | norway |                   | hav 46_Vestland 15_More%20og%20Romsdal 50_Trondelag 18_Nordland 55_Troms 56_Finnmark
