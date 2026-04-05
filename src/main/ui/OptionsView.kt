@@ -14,11 +14,13 @@ private const val NO_CONFIG = "<Select %s>"
 class OptionsView {
   private val panel: Box = Box.createVerticalBox()
   private val includeNetexChk: JCheckBox = JCheckBox(" 🚌 Netex (download and unpack)", true)
+  private val filterNetexChk: JCheckBox = JCheckBox(" 🔍 Filter Netex using GeoJSON", false)
   private val includeOsmChk: JCheckBox = JCheckBox(" 🌍 OSM (download and link/filter)", false)
   private val defaultConfigCombo: JComboBox<String> = createConfigComboBox(NO_CONFIG.format("Default"), true)
   private val mainConfigCombo: JComboBox<String> = createConfigComboBox(NO_CONFIG.format("Main"), false)
 
   fun includeNetex() : Boolean = includeNetexChk.isSelected
+  fun filterNetex() : Boolean = filterNetexChk.isSelected
   fun includeOsm() : Boolean = includeOsmChk.isSelected
   fun defaultConfig() : String? = selectedConfig(defaultConfigCombo)
   fun mainConfig() : String? = selectedConfig(mainConfigCombo)
@@ -31,6 +33,11 @@ class OptionsView {
     includeNetexChk.toolTipText = """
       Download NeTEx files and unzip them into the nextex folder.
       Stops files (starting with "tiamat") is renamed to stat with "_stop".
+    """.trimIndent()
+    filterNetexChk.toolTipText = """
+      After downloading and unpacking NeTEx files, filter them using the
+      GeoJSON polygon for this test case. Keeps only stop places inside the
+      polygon and the service journeys that serve those stops.
     """.trimIndent()
     includeOsmChk.toolTipText = """
       Download OSM file if the file is more than 14 days old. Then filter
@@ -53,7 +60,7 @@ class OptionsView {
     configBoxes.add(mainConfigCombo)
     configBoxes.add(Box.createHorizontalGlue())
 
-    listOf(includeNetexChk, includeOsmChk, verticalSep, configLbl, configBoxes).forEach {
+    listOf(includeNetexChk, includeOsmChk, filterNetexChk, verticalSep, configLbl, configBoxes).forEach {
       it.alignmentX = 0.0f
       panel.add(it)
     }

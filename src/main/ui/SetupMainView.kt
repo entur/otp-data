@@ -40,6 +40,7 @@ class SetupMainView(
 
   override fun selectedCase() = casesView.selectedCase
   override fun includeNetex() = options.includeNetex()
+  override fun filterNetex() = options.filterNetex()
   override fun includeOsm() = options.includeOsm()
   override fun defaultConfig(): String? = options.defaultConfig()
   override fun mainConfig(): String? = options.mainConfig()
