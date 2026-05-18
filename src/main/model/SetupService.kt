@@ -105,7 +105,7 @@ object SetupService {
       val netexDir = netexTargetDir(targetDir)
       val polygon = parseGeoJsonPolygon(geojson.asFile())
       val stops = StopPlaceFinder.findInPolygon(netexDir, polygon)
-      NetexFilter.filter(stops.quayIds, netexDir)
+      NetexFilter.filter(stops.stopIds, stops.quayIds, netexDir)
     }
   }
 }

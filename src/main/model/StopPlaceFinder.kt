@@ -44,6 +44,7 @@ private class StopPlaceSaxHandler(private val polygon: Polygon) : DefaultHandler
     // Current StopPlace state
     private var currentStopId: String? = null
     private var currentQuayIds = mutableListOf<String>()
+    private var insideQuay = false
     private var insideLocation = false
     private var insideLongitude = false
     private var insideLatitude = false
@@ -58,9 +59,11 @@ private class StopPlaceSaxHandler(private val polygon: Polygon) : DefaultHandler
                 currentQuayIds = mutableListOf()
                 currentLon = null
                 currentLat = null
+                insideQuay = false
             }
-            "Quay" -> attrs?.getValue("id")?.let { currentQuayIds.add(it) }
-            "Location" -> insideLocation = true
+            "Quay" -> { attrs?.getValue("id")?.let { currentQuayIds.add(it) }; insideQuay = true }
+            // Only capture the StopPlace's own centroid, not quay locations
+            "Location" -> if (!insideQuay) insideLocation = true
             "Longitude" -> if (insideLocation) { insideLongitude = true; charBuffer.clear() }
             "Latitude" -> if (insideLocation) { insideLatitude = true; charBuffer.clear() }
         }
@@ -83,6 +86,7 @@ private class StopPlaceSaxHandler(private val polygon: Polygon) : DefaultHandler
                 insideLatitude = false
             }
             "Location" -> insideLocation = false
+            "Quay" -> insideQuay = false
             "StopPlace" -> {
                 val id = currentStopId ?: return
                 val lon = currentLon ?: return
