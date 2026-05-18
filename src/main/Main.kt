@@ -3,17 +3,21 @@ package org.entur.otp.setup
 import org.entur.otp.setup.model.Config
 import org.entur.otp.setup.model.Repository
 import org.entur.otp.setup.model.SetupService
+import org.entur.otp.setup.ui.CliModel
 import org.entur.otp.setup.ui.SetupMainView
 import org.entur.otp.setup.ui.UiModel
 import java.io.File
 
 fun main(args : Array<String>) {
-
-  println("Args: ${args.joinToString(" ")}")
   val config = config()
-  println(config)
 
-  SetupMainView(config.cases) { run(it, config)}.setupAndStart()
+  if (args.isEmpty()) {
+    SetupMainView(config.cases) { run(it, config) }.setupAndStart()
+  } else if (args.contains("--help")) {
+    CliModel.printHelp(config.cases.map { it.path })
+  } else {
+    run(CliModel.parse(args, config.cases.map { it.path }), config)
+  }
 }
 
 
