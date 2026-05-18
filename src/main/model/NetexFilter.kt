@@ -21,7 +21,9 @@ import org.entur.netex.tools.lib.selectors.entities.EntitySelector
 import org.entur.netex.tools.lib.selectors.entities.EntitySelectorContext
 import org.entur.netex.tools.lib.selectors.refs.CompositeRefSelector
 import org.xml.sax.Attributes
+import org.xml.sax.helpers.DefaultHandler
 import java.io.File
+import javax.xml.parsers.SAXParserFactory
 
 object NetexFilter {
 
@@ -48,9 +50,11 @@ object NetexFilter {
             .withUnreferencedEntitiesToPrune(
                 setOf("JourneyPattern", "Route", "Line", "Network", "Operator", "DestinationDisplay")
             )
+            .withSkipElements(listOf("FareFrame"))
             .build()
 
         runFilter(filterConfig, netexDir, filteredDir)
+        deleteEmptyNetexFiles(filteredDir)
 
         netexDir.deleteRecursively()
         filteredDir.renameTo(netexDir)
@@ -148,6 +152,7 @@ private class ServiceJourneyEntitySelector(
 
         val kept = mutableMapOf<String, MutableMap<String, Entity>>()
         for (entity in model.listAllEntities()) {
+            if (entity.type in OtpIgnoredEntities.ALL) continue
             if (entity.type == "ServiceJourney" && entity.id.baseId() !in targetSjIds) continue
             if (entity.type == "StopPlace" && entity.id.baseId() !in stopIds) continue
             if (entity.type == "Quay" && entity.id.baseId() !in quayIds) continue
@@ -227,6 +232,38 @@ private class SpijpToSjPlugin(
     override fun endElement(elementName: String, currentEntity: Entity?) {
         if (elementName == "ServiceJourney") currentSjId = null
     }
+}
+
+/**
+ * Deletes any XML file in [dir] that contains no NeTEx payload entities (i.e. only frame
+ * wrapper elements remain after filtering). A payload entity is any element with an `id`
+ * attribute whose local name is not a known frame type.
+ */
+private fun deleteEmptyNetexFiles(dir: File) {
+    val frameTypes = setOf(
+        "CompositeFrame", "SiteFrame", "ServiceFrame", "TimetableFrame",
+        "ServiceCalendarFrame", "ResourceFrame", "FareFrame", "GeneralFrame",
+        "InfrastructureFrame", "VehicleScheduleFrame", "DriverScheduleFrame",
+        // Frame-level metadata elements that carry id attributes but are not payload entities
+        "AvailabilityCondition", "ValidBetween", "Codespace"
+    )
+    var deleted = 0
+    for (file in dir.listFiles { f -> f.name.endsWith(".xml") } ?: return) {
+        var entityCount = 0
+        val handler = object : DefaultHandler() {
+            override fun startElement(uri: String?, localName: String?, qName: String?, attrs: Attributes?) {
+                if (qName != null && qName !in frameTypes && attrs?.getValue("id") != null) {
+                    entityCount++
+                }
+            }
+        }
+        SAXParserFactory.newInstance().newSAXParser().parse(file, handler)
+        if (entityCount == 0) {
+            file.delete()
+            deleted++
+        }
+    }
+    println("  Deleted $deleted empty file(s) from ${dir.name}")
 }
 
 private fun String.baseId() = substringBefore('|')
