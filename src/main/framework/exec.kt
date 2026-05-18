@@ -25,12 +25,12 @@ fun exec(workingDir: File, cmdLine : String, echo : Boolean = false) {
   }
 }
 
-fun rmDir(dirname : String, targetDir : File) {
-  if(!targetDir.exists()) {
-    println("Target dir does not exist: $targetDir")
+fun rmDir(dir : File) {
+  if(!dir.exists()) {
+    println("Dir does not exist: $dir")
     return
   }
-  targetDir.deleteRecursively()
+  dir.deleteRecursively()
 }
 
 fun mkDirs(targetDir : File) {

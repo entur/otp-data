@@ -2,6 +2,7 @@ package org.entur.otp.setup.model
 
 import org.entur.otp.setup.framework.execEcho
 import org.entur.otp.setup.framework.link
+import org.entur.otp.setup.framework.parseGeoJsonPolygon
 import org.entur.otp.setup.framework.renameFiles
 import org.entur.otp.setup.framework.rmDir
 import java.io.File
@@ -85,7 +86,7 @@ object SetupService {
   fun downloadNetexFiles(cases: List<WebResource>, targetDir: File) {
     val expire = Period.ofDays(1)
     val netexTargetDir = File(targetDir, "netex")
-    rmDir(netexTargetDir.name, targetDir)
+    rmDir(netexTargetDir)
 
     for (it in cases) {
       println("Download ${it.url}/${it.webFilename} ($targetDir)")
@@ -94,5 +95,19 @@ object SetupService {
 
     // Rename stop files to follow the OTP naming convention
     renameFiles("tiamat", "_stops_tiamat", netexTargetDir)
+  }
+
+  fun filterNetex(netexFiles: List<WebResource>, geojson: List<FileResource>, targetDir: File) {
+    val geojson = geojson.firstOrNull()
+    if (geojson == null) {
+      println("  Warning: --filter-netex set but no GeoJSON defined for this case — skipping")
+    } else {
+      val netexDir = File(targetDir, "netex")
+      val polygon = parseGeoJsonPolygon(geojson.asFile())
+      val stops = StopPlaceFinder.findInPolygon(netexDir, polygon)
+      NetexFilter.filter(stops.quayIds, netexDir)
+    }
+
+
   }
 }

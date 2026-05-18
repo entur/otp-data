@@ -32,6 +32,9 @@ fun run(input : UiModel, config: Config) {
   if(input.includeNetex()) {
     SetupService.downloadNetexFiles(case.netex, targetDir)
   }
+  if(input.filterNetex()) {
+    SetupService.filterNetex(case.geojson, targetDir)
+  }
   if(input.includeOsm()) {
     SetupService.downloadAndFilterOsmFiles(case.osm, case.geojson, targetDir)
   }

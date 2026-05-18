@@ -64,7 +64,7 @@ class CliModel private constructor(
       }
 
       // Default: download NeTEx if no data flags provided
-      if (!netex && !osm) netex = true
+      if (!netex && !osm && !filterNetex) netex = true
 
       return CliModel(caseName, netex, osm, filterNetex, defaultConfig, mainConfig)
     }

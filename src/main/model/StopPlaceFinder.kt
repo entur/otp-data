@@ -52,7 +52,7 @@ private class StopPlaceSaxHandler(private val polygon: Polygon) : DefaultHandler
     private val charBuffer = StringBuilder()
 
     override fun startElement(uri: String?, localName: String?, qName: String?, attrs: Attributes?) {
-        when (localName) {
+        when (qName) {
             "StopPlace" -> {
                 currentStopId = attrs?.getValue("id")
                 currentQuayIds = mutableListOf()
@@ -73,7 +73,7 @@ private class StopPlaceSaxHandler(private val polygon: Polygon) : DefaultHandler
     }
 
     override fun endElement(uri: String?, localName: String?, qName: String?) {
-        when (localName) {
+        when (qName) {
             "Longitude" -> {
                 if (insideLongitude) currentLon = charBuffer.toString().trim().toDoubleOrNull()
                 insideLongitude = false

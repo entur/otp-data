@@ -9,6 +9,7 @@ import org.entur.netex.tools.lib.model.EntityModel
 import org.entur.netex.tools.lib.output.DelegatingXMLElementWriter
 import org.entur.netex.tools.lib.output.NetexFileWriter
 import org.entur.netex.tools.lib.output.XmlContext
+import org.entur.netex.tools.lib.plugin.AbstractNetexPlugin
 import org.entur.netex.tools.lib.plugin.NetexFileWriterContext
 import org.entur.netex.tools.lib.report.FileIndex
 import org.entur.netex.tools.lib.sax.BuildEntityModelSaxHandler
@@ -19,6 +20,7 @@ import org.entur.netex.tools.lib.selectors.entities.CompositeEntitySelector
 import org.entur.netex.tools.lib.selectors.entities.EntitySelector
 import org.entur.netex.tools.lib.selectors.entities.EntitySelectorContext
 import org.entur.netex.tools.lib.selectors.refs.CompositeRefSelector
+import org.xml.sax.Attributes
 import java.io.File
 
 object NetexFilter {
@@ -36,8 +38,10 @@ object NetexFilter {
 
         println("\nFilter NeTEx files using ${quayIds.size} quays...")
 
+        val spijpToSj = mutableMapOf<String, MutableSet<String>>()
         val filterConfig = FilterConfigBuilder()
-            .withEntitySelectors(listOf(ServiceJourneyEntitySelector(quayIds)))
+            .withPlugins(listOf(SpijpToSjPlugin(spijpToSj)))
+            .withEntitySelectors(listOf(ServiceJourneyEntitySelector(quayIds, spijpToSj)))
             .withUnreferencedEntitiesToPrune(
                 setOf("JourneyPattern", "Route", "Line", "Network", "Operator", "DestinationDisplay")
             )
@@ -55,7 +59,7 @@ object NetexFilter {
         val model = EntityModel(cliConfig.alias())
         val fileIndex = FileIndex()
 
-        // Pass 1: build entity model
+        // Pass 1: build entity model (plugins also collect data here)
         XMLFiles.parseXmlDocuments(input) { file ->
             BuildEntityModelSaxHandler(
                 entityModel = model,
@@ -112,20 +116,24 @@ object NetexFilter {
 /**
  * Selects ServiceJourney entities that (transitively) serve any of the given quay IDs.
  *
- * Traversal (all via back-references in the EntityModel):
+ * Traversal:
  *   quayId
- *     → PassengerStopAssignment  (QuayRef back-ref)
- *     → ScheduledStopPoint       (ScheduledStopPointRef forward ref on PSA)
- *     → StopPointInJourneyPattern (ScheduledStopPointRef back-ref)
- *     → ServiceJourney           (StopPointInJourneyPatternRef back-ref — the ref is on
- *                                  TimetabledPassingTime, but its nearest entity ancestor
- *                                  in the SAX stack is ServiceJourney)
+ *     → PassengerStopAssignment   (QuayRef back-ref in EntityModel)
+ *     → ScheduledStopPoint        (ScheduledStopPointRef forward ref on PSA)
+ *     → StopPointInJourneyPattern (ScheduledStopPointRef back-ref in EntityModel)
+ *     → ServiceJourney            (via spijpToSj — TimetabledPassingTime inside SJ holds
+ *                                   StopPointInJourneyPatternRef, but TPT has its own entity id
+ *                                   so EntityModel cannot resolve SJ from it; SpijpToSjPlugin
+ *                                   builds the SPIJP→SJ map during Pass 1 instead)
  *
- * The selector keeps ALL entities except ServiceJourneys not reachable from the quay set.
+ * Keeps ALL entities except ServiceJourneys not reachable from the quay set.
  * Combined with unreferencedEntitiesToPrune, unused Lines/Routes/JourneyPatterns are
  * removed in the subsequent pruning step.
  */
-private class ServiceJourneyEntitySelector(private val quayIds: Set<String>) : EntitySelector {
+private class ServiceJourneyEntitySelector(
+    private val quayIds: Set<String>,
+    private val spijpToSj: Map<String, Set<String>>
+) : EntitySelector {
 
     override fun selectEntities(context: EntitySelectorContext): EntitySelection {
         val model = context.entityModel
@@ -134,7 +142,7 @@ private class ServiceJourneyEntitySelector(private val quayIds: Set<String>) : E
 
         val kept = mutableMapOf<String, MutableMap<String, Entity>>()
         for (entity in model.listAllEntities()) {
-            if (entity.type == "ServiceJourney" && entity.id !in targetIds) continue
+            if (entity.type == "ServiceJourney" && entity.id.baseId() !in targetIds) continue
             kept.getOrPut(entity.type) { mutableMapOf() }[entity.id] = entity
         }
         return EntitySelection(kept, model)
@@ -148,9 +156,7 @@ private class ServiceJourneyEntitySelector(private val quayIds: Set<String>) : E
                 for (sspRef in model.getRefsOfTypeFrom(psa.id, "ScheduledStopPointRef")) {
                     for (spinJP in model.getEntitiesReferringTo(sspRef.ref)) {
                         if (spinJP.type != "StopPointInJourneyPattern") continue
-                        for (sj in model.getEntitiesReferringTo(spinJP.id)) {
-                            if (sj.type == "ServiceJourney") result.add(sj.id)
-                        }
+                        spijpToSj[spinJP.id.baseId()]?.let { result.addAll(it) }
                     }
                 }
             }
@@ -158,3 +164,37 @@ private class ServiceJourneyEntitySelector(private val quayIds: Set<String>) : E
         return result
     }
 }
+
+/**
+ * Collects a SPIJP-ID → ServiceJourney-ID mapping during Pass 1 (BuildEntityModelSaxHandler).
+ * TimetabledPassingTime→ServiceJourney is a containment relationship not tracked by the
+ * EntityModel, so a plugin is the right hook to capture it during the existing XML scan.
+ */
+private class SpijpToSjPlugin(
+    private val spijpToSj: MutableMap<String, MutableSet<String>>
+) : AbstractNetexPlugin() {
+    private var currentSjId: String? = null
+
+    override fun getName() = "SpijpToSjPlugin"
+    override fun getDescription() = "Maps StopPointInJourneyPattern IDs to parent ServiceJourney IDs"
+    override fun getSupportedElementTypes() = setOf("ServiceJourney", "StopPointInJourneyPatternRef")
+
+    override fun startElement(elementName: String, attributes: Attributes?, currentEntity: Entity?) {
+        when (elementName) {
+            "ServiceJourney" -> currentSjId = attributes?.getValue("id")
+            // currentEntity is TimetabledPassingTime when the ref is inside passingTimes,
+            // and StopPointInJourneyPattern when inside pointsInSequence — only the former maps to an SJ
+            "StopPointInJourneyPatternRef" -> if (currentEntity?.type == "TimetabledPassingTime") {
+                val spijpId = attributes?.getValue("ref") ?: return
+                val sjId = currentSjId ?: return
+                spijpToSj.getOrPut(spijpId) { mutableSetOf() }.add(sjId)
+            }
+        }
+    }
+
+    override fun endElement(elementName: String, currentEntity: Entity?) {
+        if (elementName == "ServiceJourney") currentSjId = null
+    }
+}
+
+private fun String.baseId() = substringBefore('|')
