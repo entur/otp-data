@@ -85,29 +85,29 @@ object SetupService {
 
   fun downloadNetexFiles(cases: List<WebResource>, targetDir: File) {
     val expire = Period.ofDays(1)
-    val netexTargetDir = File(targetDir, "netex")
-    rmDir(netexTargetDir)
+    val netexDir = netexTargetDir(targetDir)
+    rmDir(netexDir)
 
     for (it in cases) {
       println("Download ${it.url}/${it.webFilename} ($targetDir)")
-      it.downloadNetexFile(targetDir, netexTargetDir.name, expire)
+      it.downloadNetexFile(targetDir, netexDir.name, expire)
     }
 
     // Rename stop files to follow the OTP naming convention
-    renameFiles("tiamat", "_stops_tiamat", netexTargetDir)
+    renameFiles("tiamat", "_stops_tiamat", netexDir)
   }
 
-  fun filterNetex(netexFiles: List<WebResource>, geojson: List<FileResource>, targetDir: File) {
+  fun filterNetex(geojson: List<FileResource>, targetDir: File) {
     val geojson = geojson.firstOrNull()
     if (geojson == null) {
       println("  Warning: --filter-netex set but no GeoJSON defined for this case — skipping")
     } else {
-      val netexDir = File(targetDir, "netex")
+      val netexDir = netexTargetDir(targetDir)
       val polygon = parseGeoJsonPolygon(geojson.asFile())
       val stops = StopPlaceFinder.findInPolygon(netexDir, polygon)
       NetexFilter.filter(stops.quayIds, netexDir)
     }
-
-
   }
 }
+
+private fun netexTargetDir(targetDir: File): File = File(targetDir, "netex")
