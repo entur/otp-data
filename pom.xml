@@ -88,7 +88,7 @@
     <dependency>
       <groupId>org.entur.ror</groupId>
       <artifactId>netex-tools-lib</artifactId>
-      <version>0.0.39</version>
+      <version>0.0.46</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
