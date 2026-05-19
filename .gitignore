@@ -11,7 +11,7 @@ log-*.txt
 *.xml
 *.log
 *.iml
-*50m_33.tif
+*_[0-9][0-9].tif
 
 report/
 netex/
