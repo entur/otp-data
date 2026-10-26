@@ -1,5 +1,5 @@
 {
-  "configVersion": "COPY STAGING 2026-01-21 v2.9.0-entur-166",
+  "configVersion": "COPY STAGING 2026-10-26",
   "dataImportReport": true,
   "subwayAccessTime": 0,
   "embedRouterConfig": true,
@@ -11,8 +11,17 @@
   "maxTransferDuration": "30m",
   "distanceBetweenElevationSamples": 25,
   "multiThreadElevationCalculations": true,
+  "elevationTileCacheSizeMB": 4096,
   "boardingLocationTags": [
     "ref:NSR"
+  ],
+  "stopsWithRegularTransfers": [
+    "RB:NSR:Quay:111059",
+    "RB:NSR:Quay:111060",
+    "RB:NSR:Quay:9103",
+    "RB:NSR:Quay:110511",
+    "RB:NSR:Quay:110517",
+    "RB:NSR:Quay:99415"
   ],
   "transferParametersForMode": {
     "CAR": {
@@ -54,7 +63,8 @@
 // ENABLED IN STAGING, BUT LOADING ELEVATION DATA IS NORMALY NOT REQUIERED FOR LOCAL DEBUGGING
 //  "dem": [
 //    {
-//      "source": "gs://ror-marduk-internal-test/kartverket/heightData/norge_dem_50m_33.tif"
+//      "source": "gs://ror-marduk-internal-test/kartverket/heightData/norge_dem_10m_33_2026_05_01.tif"
+//      "source": "../../dem/norge_dem_10m_33_2026_05_01.tif"
 //    }
 //  ],
 // READ NETEX FILES FROM LOCAL DISK, NOT GC STORAGE
@@ -93,8 +103,19 @@
 //      }
 //    ]
 //  },
+// ENABLED IN STAGING - GEOFENCING ZONES ARE APPLIED AT GRAPH BUILD, SEE "gbfs" IN otp-config.json
+//  "vehicleRentalGeofencing": {
+//    "url": "https://api.staging.entur.io/mobility/v2/gbfs/v3/manifest.json",
+//    "headers": {
+//      "ET-Client-Name": "entur-otp2"
+//    }
+//  },
   // STORE GRAPHS LOCALY - STAGING USES ABSOLUTE PATHS TO LATEST GRAPH
   "streetGraph": "streetGraph-${otp.serialization.version.id}.obj",
   "graph": "graph-otp2-${otp.serialization.version.id}.obj",
-  "buildReportDir": "report"
+  "buildReportDir": "report",
+  "fares": "off",
+  "cache": {
+    "enabled": true
+  }
 }
