@@ -1,0 +1,44 @@
+{
+  "configVersion" : "COPY STAGING 2026-11-20",
+  "otpFeatures" : {
+    "ActuatorAPI" : true,
+    "ConsiderPatternsForDirectTransfers" : true,
+    "CostlyAssertions" : true,
+    "Emission" : true,
+    "EmpiricalDelay" : true,
+    "FlexRouting" : true,
+    "FloatingBike" : true,
+    "GtfsGraphQlApi" : true,
+    "IncludeEmptyRailStopsInTransfers" : true,
+    "IncludeStopsUsedRealTimeInTransfers" : true,
+    "MultiCriteriaGroupMaxFilter" : true,
+    "OptimizeTransfers" : true,
+    "ParallelRouting" : false,
+    "ReportApi" : true,
+    "Sorlandsbanen" : true,
+    "TransferConstraints" : true,
+    "CarPooling" : false,
+    "HttpResponseTimeMetrics" : true,
+    "GoogleCloudStorage" : true
+  },
+  "gbfs" : {
+    "includeUnlistedNetworks" : true,
+    "defaults" : {
+      "applyGeofencingZones" : "graph-build",
+      "requireDropOffInsideBusinessArea" : false
+    },
+    "networks" : [
+      { "network" : "boltoslo", "requireDropOffInsideBusinessArea" : true },
+      { "network" : "boltlillestrom", "requireDropOffInsideBusinessArea" : true },
+      { "network" : "boltsarpsborg", "requireDropOffInsideBusinessArea" : true },
+      { "network" : "rydeporsgrunn", "requireDropOffInsideBusinessArea" : true },
+      { "network" : "rydesarpsborg", "requireDropOffInsideBusinessArea" : true },
+      { "network" : "dottmalvik", "requireDropOffInsideBusinessArea" : true },
+      { "network" : "dottmelhus", "requireDropOffInsideBusinessArea" : true },
+      { "network" : "dottorkanger", "requireDropOffInsideBusinessArea" : true },
+      { "network" : "dottskaun", "requireDropOffInsideBusinessArea" : true },
+      { "network" : "dottstjordal", "requireDropOffInsideBusinessArea" : true },
+      { "network" : "dotttrondheim", "requireDropOffInsideBusinessArea" : true }
+    ]
+  }
+}

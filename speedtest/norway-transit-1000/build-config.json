@@ -1,0 +1,180 @@
+{
+  "configVersion": "COPY STAGING 2026-11-20",
+  "dataImportReport": true,
+  "subwayAccessTime": 0,
+  "embedRouterConfig": true,
+  "areaVisibility": true,
+  "platformEntriesLinking": true,
+  "staticParkAndRide": true,
+  "staticBikeParkAndRide": true,
+  "maxDataImportIssuesPerFile": 1000,
+  "maxTransferDuration": "30m",
+  "distanceBetweenElevationSamples": 25,
+  "multiThreadElevationCalculations": true,
+  "elevationTileCacheSizeMB": 4096,
+  "boardingLocationTags": [
+    "ref:NSR"
+  ],
+  "stopsWithRegularTransfers": [
+    "RB:NSR:Quay:111059",
+    "RB:NSR:Quay:111060",
+    "RB:NSR:Quay:9103",
+    "RB:NSR:Quay:110511",
+    "RB:NSR:Quay:110517",
+    "RB:NSR:Quay:99415"
+  ],
+  // New transfer v2 configuration
+  "transfers": {
+    "walk": {
+      "maxDuration": "30m",
+      "stairsReluctance": 1.65,
+      "profiles": [
+        { "id": "WALK s=1.35 r=4.0", "userPreferences": { "speed": 1.35, "reluctance": 4.0 }},
+        { "id": "WALK s=0.7 r=4.0", "userPreferences": { "speed": 0.7, "reluctance": 4.0 }},
+        { "id": "WALK s=1.3 r=10.0", "userPreferences": { "speed": 1.3, "reluctance": 10.0 }}
+      ],
+      "warmup": [
+        { "id": "WALK s=1.3 r=4.0", "userPreferences": { "speed": 1.3, "reluctance": 4.0 }},
+        { "id": "WALK s=1.4 r=4.0", "userPreferences": { "speed": 1.4, "reluctance": 4.0 }},
+        { "id": "WALK s=1.95 r=4.0", "userPreferences": { "speed": 1.95, "reluctance": 4.0 }},
+        { "id": "WALK s=2.0 r=4.0", "userPreferences": { "speed": 2.0, "reluctance": 4.0 }},
+        { "id": "WALK s=0.8 r=4.0", "userPreferences": { "speed": 0.8, "reluctance": 4.0 }},
+        { "id": "WALK s=1.5 r=4.0", "userPreferences": { "speed": 1.5, "reluctance": 4.0 }},
+        { "id": "WALK s=1.3 r=2.0", "userPreferences": { "speed": 1.3, "reluctance": 2.0 }},
+        { "id": "WALK s=1.3 r=7.0", "userPreferences": { "speed": 1.3, "reluctance": 7.0 }},
+        { "id": "WALK s=1.65 r=4.0", "userPreferences": { "speed": 1.65, "reluctance": 4.0 }},
+        { "id": "WALK s=2.8 r=4.0", "userPreferences": { "speed": 2.8, "reluctance": 4.0 }},
+        { "id": "WALK s=0.95 r=4.0", "userPreferences": { "speed": 0.95, "reluctance": 4.0 }},
+        { "id": "WALK s=1.7 r=4.0", "userPreferences": { "speed": 1.7, "reluctance": 4.0 }},
+        { "id": "WALK s=1.2 r=4.0", "userPreferences": { "speed": 1.2, "reluctance": 4.0 }},
+        { "id": "WALK s=1.1 r=4.0", "userPreferences": { "speed": 1.1, "reluctance": 4.0 }},
+        { "id": "WALK s=0.85 r=4.0", "userPreferences": { "speed": 0.85, "reluctance": 4.0 }},
+        { "id": "WALK s=1.15 r=4.0", "userPreferences": { "speed": 1.15, "reluctance": 4.0 }},
+        { "id": "WALK s=1.55 r=4.0", "userPreferences": { "speed": 1.55, "reluctance": 4.0 }},
+        { "id": "WALK s=1.3 r=1.0", "userPreferences": { "speed": 1.3, "reluctance": 1.0 }},
+        { "id": "WALK s=1.8 r=4.0", "userPreferences": { "speed": 1.8, "reluctance": 4.0 }},
+        { "id": "WALK s=1.4 r=7.0", "userPreferences": { "speed": 1.4, "reluctance": 7.0 }},
+        { "id": "WALK s=0.8 r=2.0", "userPreferences": { "speed": 0.8, "reluctance": 2.0 }},
+        { "id": "WALK s=1.45 r=4.0", "userPreferences": { "speed": 1.45, "reluctance": 4.0 }},
+        { "id": "WALK s=0.65 r=4.0", "userPreferences": { "speed": 0.65, "reluctance": 4.0 }},
+        { "id": "WALK s=1.25 r=4.0", "userPreferences": { "speed": 1.25, "reluctance": 4.0 }}
+      ]
+    },
+    "wheelchair": {
+      "maxDuration": "30m",
+      "stop": { "unknownCost": 600, "inaccessibleCost": 3600 },
+      "profiles": [
+        { "id": "WHEELCHAIR s=1.3 r=4.0", "userPreferences": { "speed": 1.3, "reluctance": 4.0 }}
+      ]
+    },
+    "bicycle": {
+      "maxDurationAllowAllModes": "8m",
+      "maxDuration": "30m",
+      "profiles": [
+        { "id": "BICYCLE s=5.0 r=5.0 walk(r=10.0)", "userPreferences": { "speed": 5.0, "reluctance": 5.0, "walk": { "reluctance": 10.0 } } }
+      ],
+      "warmup": [
+        { "id": "BICYCLE s=8.0 r=5.0 walk(r=10.0)", "userPreferences": { "speed": 8.0, "reluctance": 5.0, "walk": { "reluctance": 10.0 } } }
+      ]
+    },
+    "car": { "maxDuration": "3h" },
+    "flex": { "maxDuration": "5m" }
+  },
+  // Old config - remove at least after 1.1.2027
+  "transferParametersForMode": {
+    "CAR": {
+      "disableDefaultTransfers": true,
+      "carsAllowedStopMaxTransferDuration": "3h"
+    }
+  },
+  // Old config - remove at least after 1.1.2027
+  "transferRequests": [
+    {
+      "modes": "WALK"
+    },
+    {
+      "modes": "WALK",
+      "wheelchairAccessibility": {
+        "enabled": true
+      }
+    },
+    {
+      "modes": "CAR"
+    }
+  ],
+  "osmDefaults": {
+    "osmTagMapping": "norway",
+    "timeZone": "Europe/Oslo"
+  },
+  "osmCacheDataInMem": "true",
+// READ OSM DATA FROM DEFAULT LOCATION, NOT GCS
+//  "osm": [
+//    {
+//      "source": "gs://ror-osmdata-prd/osm-data/norway-latest.osm.pbf"
+//    },
+//    {
+//      "source": "gs://marduk-test/osm/static/osm_static_sweden_extract.pbf"
+//    },
+//    {
+//      "source": "gs://marduk-test/osm/static/osm_static_sweden_storlien_extract.pbf"
+//    }
+//  ],
+// ENABLED IN STAGING, BUT LOADING ELEVATION DATA IS NORMALY NOT REQUIERED FOR LOCAL DEBUGGING
+//  "dem": [
+//    {
+//      "source": "gs://ror-marduk-internal-test/kartverket/heightData/norge_dem_10m_33_2026_05_01.tif"
+//      "source": "../../dem/norge_dem_10m_33_2026_05_01.tif"
+//    }
+//  ],
+// READ NETEX FILES FROM LOCAL DISK, NOT GC STORAGE
+  "netexDefaults": {
+    "feedId": "RB",
+    "sharedFilePattern": "_stops.*\\.xml",
+    "sharedGroupFilePattern": "_(\\w{3})(_flexible)?_shared_data.xml",
+    "groupFilePattern": "(\\w{3})_.*\\.xml",
+    "ignoreFareFrame": false
+  },
+// ENABLED IN STAGING - COMMENT IN IF NEEDED
+//  "transitFeeds": [
+//    {
+//      "type": "netex",
+//      "source": "gs://marduk-test/outbound/netex/rb_norway-aggregated-netex.zip",
+//      "sharedFilePattern": "_stops.xml",
+//      "sharedGroupFilePattern": "_(\\w{3})(_flexible)?_shared_data(_\\d+)?\\.xml",
+//      "groupFilePattern": "(\\w{3})_.*\\.xml",
+//      "feedId": "RB",
+//      "ignoreFareFrame": false
+//    }
+//  ],
+//  "emission": {
+//    "feeds": [
+//      {
+//        "feedId": "RB",
+//        "source": "gs://ent-gcs-nxemis-export-prd-001/otp/emissions-to-otp.csv"
+//      }
+//    ]
+//  },
+//  "empiricalDelay": {
+//    "feeds": [
+//      {
+//        "feedId": "RB",
+//        "source": "gs://empirical_delay/"
+//      }
+//    ]
+//  },
+// ENABLED IN STAGING - GEOFENCING ZONES ARE APPLIED AT GRAPH BUILD, SEE "gbfs" IN otp-config.json
+//  "vehicleRentalGeofencing": {
+//    "url": "https://api.staging.entur.io/mobility/v2/gbfs/v3/manifest.json",
+//    "headers": {
+//      "ET-Client-Name": "entur-otp2"
+//    }
+//  },
+  // STORE GRAPHS LOCALY - STAGING USES ABSOLUTE PATHS TO LATEST GRAPH
+  "streetGraph": "streetGraph-${otp.serialization.version.id}.obj",
+  "graph": "graph-otp2-${otp.serialization.version.id}.obj",
+  "buildReportDir": "report",
+  "fares": "off",
+  "cache": {
+    "enabled": true
+  }
+}

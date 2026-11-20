@@ -1,0 +1,6 @@
+{
+  "feedId" : "RB",
+  "testDate": "2026-11-24",
+  "ignoreStreetResults": true,
+  "graph": "../../otp/norway/graph-otp2-${otp.serialization.version.id}.obj"
+}

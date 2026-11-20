@@ -1,0 +1,252 @@
+{
+  "configVersion": "COPY STAGING 2026-11-20",
+  "server": {
+    "apiProcessingTimeout": "15s",
+    "apiDocumentationProfile": "ENTUR",
+    "traceParameters": [
+      {
+        "httpRequestHeader": "X-Correlation-ID",
+        "httpResponseHeader": "X-Correlation-ID",
+        "logKey": "correlationId",
+        "generateIdIfMissing": true
+      },
+      {
+        "httpRequestHeader": "ET-Client-Name",
+        "logKey": "etClientName"
+      }
+    ],
+    "httpResponseTimeMetrics": {
+      "clientHeader": "et-client-name",
+      "monitoredClients": [
+        "ruter-tetApp",
+        "ruter-travel-api",
+        "entur-search",
+        "vy-itinerary-high-priority",
+        "atb-bff",
+        "entur-client-app",
+        "skyss-ios",
+        "troms-bff",
+        "kolumbus-reisevenn"
+      ],
+      "monitoredEndpoints": [
+        "/transmodel/index/graphql"
+      ],
+      "metricName": "otp_http_server_requests",
+      "minExpectedResponseTime": "0.05s",
+      "maxExpectedResponseTime": "10s"
+    }
+  },
+  "routingDefaults": {
+    "directTransitSearch": {
+      "enabled": false
+    },
+    "streetRoutingTimeout": "5s",
+    "numItineraries": 12,
+    "transferPenalty": 0,
+    "turnReluctance": 1.0,
+    "bicycle": {
+      "speed": 5,
+      "reluctance": 5.0,
+      "boardCost": 600,
+      "walk": {
+        "reluctance": 10.0
+      },
+      "parking": {
+        "cost": 120
+      },
+      "rental": {
+        "useAvailabilityInformation": true
+      }
+    },
+    "car": {
+      "reluctance": 10,
+      "decelerationSpeed": 2.9,
+      "accelerationSpeed": 2.9,
+      "rental": {
+        "dropOffTime": "120s",
+        "useAvailabilityInformation": true
+      }
+    },
+    "scooter": {
+      "rental": {
+        "useAvailabilityInformation": true
+      }
+    },
+    "walk": {
+      "speed": 1.3,
+      "reluctance": 4.0,
+      "stairsReluctance": 1.65,
+      "boardCost": 600
+    },
+    "wheelchairAccessibility": {
+      "trip": {
+        "onlyConsiderAccessible": false
+      },
+      "stop": {
+        "onlyConsiderAccessible": false
+      },
+      "elevator": {
+        "onlyConsiderAccessible": false
+      }
+    },
+    "otherThanPreferredRoutesPenalty": 300,
+    "transferSlack": 120,
+    "boardSlackForMode": {
+      "AIRPLANE": "35m"
+    },
+    "alightSlackForMode": {
+      "AIRPLANE": "15m"
+    },
+    "accessEgress": {
+      "maxDurationForMode": {
+        "BIKE_RENTAL": "20m",
+        "CAR": "3h",
+        "SCOOTER_RENTAL": "20m"
+      },
+      "maxStopCountForMode": {
+        "CAR": 0
+      }
+    },
+    "maxDirectStreetDurationForMode": {
+      "CAR": "12h"
+    },
+    "itineraryFilters": {
+      "transitGeneralizedCostLimit": {
+        "costLimitFunction": "900 + 1.5x",
+        "intervalRelaxFactor": 0.75
+      },
+      "directFlexGeneralizedCostLimit": {
+        "costLimitFunction": "900 + 1.5x",
+        "intervalRelaxFactor": 0.75
+      },
+      "bikeRentalDistanceRatio": 0.3
+    },
+    "ignoreRealtimeUpdates": false,
+    "geoidElevation": false,
+    "maxJourneyDuration": "36h",
+    "drivingDirection": "right",
+    "transferOptimization": {
+      "optimizeTransferWaitTime": true,
+      "minSafeWaitTimeFactor": 5.0,
+      "backTravelWaitTimeFactor": 1.0,
+      "extraStopBoardAlightCostsFactor": 8.0
+    },
+    "relaxTransitGroupPriority": "15m + 1.2x",
+    "transitGroupPriority": {
+      "global": [
+        {
+          "modes": [
+            "AIRPLANE"
+          ]
+        },
+        {
+          "subModes": [
+            "localCarFerry"
+          ]
+        },
+        {
+          "agencies": [
+            "RB:FLT:Authority:FLT"
+          ]
+        },
+        {
+          "subModes": [
+            "highSpeedRail",
+            "regionalRail",
+            "interregionalRail",
+            "longDistance",
+            "international",
+            "sleeperRailService",
+            "nightRail",
+            "replacementRailService",
+            "crossCountryRail",
+            "railReplacementBus"
+          ]
+        },
+        {
+          "agencies": [
+            "RB:ATU:Authority:1",
+            "RB:BOR:Authority:1",
+            "RB:BSR:Authority:1",
+            "RB:BSR:Authority:2",
+            "RB:TID:Authority:TID",
+            "RB:UNI:Authority:UNI"
+          ]
+        },
+        {
+          "agencies": [
+            "RB:VYB:Authority:1",
+            "RB:VYX:Authority:1"
+          ]
+        },
+        {
+          "agencies": [
+            "RB:FLI:Authority:FlixMobility"
+          ]
+        },
+        {
+          "agencies": [
+            "RB:NBU:Authority:002"
+          ]
+        },
+        {
+          "agencies": [
+            "RB:NWY:Authority:d1ea7af1-3c2a-4825-893f-21408ef08480"
+          ]
+        }
+      ]
+    }
+  },
+  "transit": {
+    "maxNumberOfTransfers": 12,
+    "maxSearchWindow": "48h",
+    "dynamicSearchWindow": {
+      "minTransitTimeCoefficient": 0.5,
+      "minWaitTimeCoefficient": 0.5,
+      "minWindow": "1h",
+      "maxWindow": "5h"
+    },
+    "stopBoardAlightDuringTransferCost": {
+      "DISCOURAGED": 1500,
+      "ALLOWED": 75,
+      "RECOMMENDED": 30,
+      "PREFERRED": 0
+    },
+    "transferCacheMaxSize": 75,
+    "transferCacheRequests": [
+      { "modes": "WALK", "walk": { "speed": 1.4 } },
+      { "modes": "WALK", "walk": { "speed": 1.3 } },
+      { "modes": "BICYCLE", "bicycle": { "speed": 8.0 } },
+      { "modes": "CAR" },
+      { "modes": "WALK", "walk": { "speed": 1.95 } },
+      { "modes": "WALK", "walk": { "speed": 0.7 } },
+      { "modes": "WALK", "walk": { "speed": 1.3, "reluctance": 12.0 } }
+    ]
+  },
+  "flex": {
+    "maxTransferDuration": "5m",
+    "maxFlexTripDuration": "1h15m"
+  },
+// THIS IS ENABLED IN STAGING, BUT GENERATE A LOT OF NOICE LOCALY; HENCE COMMENTED OUT
+//  "vehicleRentalServiceDirectory": {
+//    "url": "http://mobility-cache.tst.entur.internal/gbfs-internal/v3/manifest.json",
+//    "headers": {
+//      "ET-Client-Name": "entur-otp2"
+//    }
+//  },
+  "transmodelApi": {
+    "hideFeedId": true,
+    "maxNumberOfResultFields": 600000
+  },
+  "warmup": {
+    "api": "transmodel",
+    "from": { "lat": 59.9109, "lon": 10.7530 },
+    "to": { "lat": 59.9302, "lon": 10.7127 },
+    "accessModes": ["WALK", "BIKE", "CAR_TO_PARK"],
+    "egressModes": ["WALK", "BIKE", "WALK"]
+  },
+  "timetableUpdates": {
+    "purgeExpiredData": false,
+    "maxSnapshotFrequency": "2s"
+  }
+}
