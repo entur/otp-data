@@ -20,8 +20,9 @@ If no argument is provided, list available cases and ask the user to pick one.
 
 ## Data project
 
-All commands run from `/Users/thomasgran/code/entur/otp/data` — this directory contains
-`cases.txt` (read at startup as a relative path) and the downloaded data.
+All commands run from the root of this repository (the data project) — this directory contains
+`cases.txt` (read at startup as a relative path) and the downloaded data. Paths below are relative
+to it. If the current directory is elsewhere, `cd "$(git rev-parse --show-toplevel)"` first.
 
 ## Flags
 
@@ -42,13 +43,13 @@ If neither `--netex` nor `--osm` is given, `--netex` is implied.
 If no argument is provided, read `cases.txt` and list the available cases, then ask the user which one to use.
 
 ```bash
-grep -v '^\s*#\|^\s*$\|NAME.*OSM' /Users/thomasgran/code/entur/otp/data/cases.txt | awk -F'|' '{print NR". "$1}' | column -t
+grep -v '^\s*#\|^\s*$\|NAME.*OSM' cases.txt | awk -F'|' '{print NR". "$1}' | column -t
 ```
 
 If an argument is given, verify the case exists:
 
 ```bash
-grep -v '^\s*#\|^\s*$\|NAME.*OSM' /Users/thomasgran/code/entur/otp/data/cases.txt | awk -F'|' '{print $1}' | tr -d ' '
+grep -v '^\s*#\|^\s*$\|NAME.*OSM' cases.txt | awk -F'|' '{print $1}' | tr -d ' '
 ```
 
 Partial name matching is handled by the Kotlin code (e.g., `oslo` → `otp/fylker/oslo`). If the
@@ -62,13 +63,13 @@ If the requested case does not appear in `cases.txt`, help the user add it:
 2. **Choose OSM** — almost always `norway` (the full Norway OSM)
 3. **Choose GeoJSON** — list existing files in `geojson/`:
    ```bash
-   ls /Users/thomasgran/code/entur/otp/data/geojson/
+   ls geojson/
    ```
    If none fits, instruct the user to create one at https://geojson.io/ and save it as
    `geojson/<name>.geojson`. Leave blank to get a symlink to the full Norway OSM.
 4. **Choose transit feeds** — list the IDs from `config.kt`:
    ```bash
-   grep 'ids =' /Users/thomasgran/code/entur/otp/data/src/main/config.kt
+   grep 'ids =' src/main/config.kt
    ```
 5. **Append the row** to `cases.txt` using the pipe-delimited format:
    ```
@@ -81,25 +82,25 @@ If the requested case does not appear in `cases.txt`, help the user add it:
 Build the project (skip if already compiled and no source changes):
 
 ```bash
-cd /Users/thomasgran/code/entur/otp/data && mvn compile -q 2>&1 | grep -v 'WARNING'
+mvn compile -q 2>&1 | grep -v 'WARNING'
 ```
 
 Run the setup:
 
 ```bash
-cd /Users/thomasgran/code/entur/otp/data && mvn exec:java -q -Dexec.args="<case> [flags...]" 2>&1
+mvn exec:java -q -Dexec.args="<case> [flags...]" 2>&1
 ```
 
 Example invocations:
 ```bash
 # NeTEx only (default)
-cd /Users/thomasgran/code/entur/otp/data && mvn exec:java -q -Dexec.args="oslo"
+mvn exec:java -q -Dexec.args="oslo"
 
 # NeTEx + OSM
-cd /Users/thomasgran/code/entur/otp/data && mvn exec:java -q -Dexec.args="oslo --netex --osm"
+mvn exec:java -q -Dexec.args="oslo --netex --osm"
 
 # With staging config
-cd /Users/thomasgran/code/entur/otp/data && mvn exec:java -q -Dexec.args="oslo --netex --config staging"
+mvn exec:java -q -Dexec.args="oslo --netex --config staging"
 ```
 
 Multiple flags: pass as a single space-separated string in `-Dexec.args`.
@@ -107,7 +108,7 @@ Multiple flags: pass as a single space-separated string in `-Dexec.args`.
 ### Step 4: Report results
 
 After a successful run, report:
-- The output directory: `/Users/thomasgran/code/entur/otp/data/<case-path>/` (e.g., `otp/fylker/oslo/`)
+- The output directory: `<repo root>/<case-path>/` (e.g., `otp/fylker/oslo/`)
 - What was downloaded (NeTEx files, OSM, config)
 - How to point OTP at this data:
   ```bash
