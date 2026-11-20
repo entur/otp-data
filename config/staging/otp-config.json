@@ -1,5 +1,5 @@
 {
-  "configVersion" : "COPY STAGING 2026-10-26",
+  "configVersion" : "COPY STAGING 2026-11-20",
   "otpFeatures" : {
     "ActuatorAPI" : true,
     "ConsiderPatternsForDirectTransfers" : true,
