@@ -1,7 +1,7 @@
 # norway-transit-1000
 
 1000 routing requests for the SpeedTest, taken from recordings of real requests to the Entur
-Journey Planner (`../../routing-requests-player/dumps/*_plan.csv`, 15 and 25 September 2026).
+Journey Planner (`../../routing-requests-player/dumps/*_plan.csv`, 2026).
 Every case returns at least one itinerary with transit (not only street) in the Norway graph.
 
 - `travelSearch.csv` - the 1000 cases. Times are local time, the date is `testDate` in
@@ -11,14 +11,14 @@ Every case returns at least one itinerary with transit (not only street) in the 
   `bd`, `bdr`.
   - `srr` and `bdr` have results for only the 32 arrive-by cases (a reverse search needs an
     arrival time). `mc` has no result for 2 cases, `bd` for 32 cases (same as the base commit).
-- `router-config.json`, `otp-config.json`, `build-config.json` - copy of `../../config/staging`
-  (2026-11-20). The `updaters` section is removed from the router config (SpeedTest has no realtime).
+- `router-config.json`, `otp-config.json`, `build-config.json` - copy of `../../config/staging`.
+  The `updaters` section is removed from the router config (SpeedTest has no realtime).
 - Coordinates of anything that is not an NSR stop place (user positions, `my_location`, addresses,
   POIs) are snapped to a ~100 m grid (0.0009 deg latitude, 0.0018 deg longitude), to avoid keeping
   exact positions. NSR stop place coordinates are rounded to 5 decimals (~1 m). Only NSR place ids are kept in
   `fromPlace`/`toPlace`: OTP drops any other id and uses the coordinates, so they are removed.
-- `category` is the straight-line distance from origin to destination: `local` (< 20 km, 803
-  cases), `regional` (20-100 km, 141) and `long_distance` (>= 100 km, 56).
+- `category` is the straight-line distance from origin to destination: `local` (< 20 km), 
+  `regional` (20-100 km) and `long_distance` (>= 100 km).
 - `ignoreStreetResults` is `true`: street-only itineraries are not part of the results.
 
 ## How the cases were made
