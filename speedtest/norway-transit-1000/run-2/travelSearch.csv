@@ -36,7 +36,7 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 35,Din posisjon to Kirkegårdsveien (ruter-tetApp),06:48,,,Din posisjon,,59.8815,10.8432,Kirkegårdsveien,,59.9238,10.4868,regional,TRANSIT|WALK
 36,Berkåk stasjon to Oslo lufthavn (entur-search),08:43,,,Berkåk stasjon,NSR:StopPlace:62373,62.82306,10.01413,Oslo lufthavn,NSR:StopPlace:58211,60.19336,11.09789,long_distance,TRANSIT|WALK
 37,from to to (vy-itinerary-high-priority),22:50,,,,NSR:StopPlace:17277,59.75003,10.17168,,NSR:StopPlace:16804,59.7406,10.20017,local,TRANSIT|WALK
-38,St. Olavs gate to Bingenveien (ruter-tetApp),21:20,,,St. Olavs gate,,59.9175,10.737,Bingenveien,,60.0075,11.223,regional,TRANSIT|WALK
+38,St. Olavs gate to Bingenveien (ruter-tetApp),21:20,,,St. Olavs gate,,59.9175,10.737,Bingenveien,,60.00806,11.22411,regional,TRANSIT|WALK
 39,Filtvet skole to Sætre (ruter-ruter-no),16:34,,,Filtvet skole,NSR:StopPlace:15244,59.57218,10.59211,Sætre,NSR:GroupOfStopPlaces:122,59.68182,10.52879,local,TRANSIT|WALK
 40,Posisjonen din to Universitetet i Innlandet Storhove (entur-search),14:51,,,Posisjonen din,,61.137,10.4652,Universitetet i Innlandet Storhove,NSR:StopPlace:13792,61.14957,10.42489,local,TRANSIT|WALK
 41,Din posisjon to Studio (ruter-tetApp),16:42,,,Din posisjon,,59.9274,10.7316,Studio,,59.9184,10.7514,local,TRANSIT|WALK
@@ -201,7 +201,7 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 200,Sandvika bussterminal to Dragveien (ruter-tetApp),13:59,,,Sandvika bussterminal,NSR:StopPlace:4030,59.8929,10.52456,Dragveien,NSR:StopPlace:3932,59.9043,10.5656,local,TRANSIT|WALK
 201,Trondheim S to Oslo S (entur-search),14:56,,,Trondheim S,NSR:StopPlace:59977,63.43628,10.39912,Oslo S,NSR:StopPlace:59872,59.91036,10.75305,long_distance,TRANSIT|WALK
 202,Lindelia sykehjem to John Strandruds vei (ruter-tetApp),14:51,,,Lindelia sykehjem,,59.9067,10.5354,John Strandruds vei,,59.9058,10.6236,local,TRANSIT|WALK
-203,Posisjonen din to Rubbestadneset (entur-search),14:53,,,Posisjonen din,,60.3279,5.193,Rubbestadneset,,59.8158,5.2686,regional,TRANSIT|WALK
+203,Posisjonen din to Rubbestadneset (entur-search),14:53,,,Posisjonen din,,60.32078,5.19086,Rubbestadneset,,59.8158,5.2686,regional,TRANSIT|WALK
 204,Valestrand ferjekai to Sløvågen ferjekai (skyss-ruter-no),16:45,,,Valestrand ferjekai,NSR:StopPlace:59342,60.50509,5.42725,Sløvågen ferjekai,NSR:StopPlace:58341,60.85708,5.06353,regional,BUS|COACH|FERRY|RAIL|TRAM|WALK
 205,Lassemoen stasjon to Trondheim S (entur-search),09:57,,,Lassemoen stasjon,NSR:StopPlace:58934,64.69617,12.71493,Trondheim S,NSR:StopPlace:59977,63.43628,10.39912,long_distance,TRANSIT|WALK
 206,Brenna to Helsfyr (ruter-tetApp),09:00,,,Brenna,NSR:StopPlace:5788,59.84643,10.84227,Helsfyr,NSR:StopPlace:59516,59.91267,10.80105,local,TRANSIT|WALK
@@ -266,7 +266,7 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 265,Din posisjon to Ski stasjon (ruter-tetApp),14:08,,,Din posisjon,,59.9184,10.7532,Ski stasjon,NSR:StopPlace:60944,59.71829,10.83367,regional,TRANSIT|WALK
 266,from to to (vy-itinerary-high-priority),13:59,,12m,,NSR:StopPlace:26740,58.76688,5.86243,,NSR:GroupOfStopPlaces:37,59.41363,10.48686,long_distance,TRANSIT|WALK
 267,Norlandia Olsvikfjellet barnehage to Skarholmen (skyss-tetApp),15:07,,,Norlandia Olsvikfjellet barnehage,,60.3828,5.211,Skarholmen,NSR:StopPlace:32462,60.40115,5.2085,local,TRANSIT|WALK
-268,Din posisjon to Fossum Idrettsanlegg (ruter-tetApp),09:59,,,Din posisjon,,59.9499,10.5624,Fossum Idrettsanlegg,,59.9589,10.6128,local,TRANSIT|WALK
+268,Din posisjon to Fossum Idrettsanlegg (ruter-tetApp),09:59,,,Din posisjon,,59.9464,10.56433,Fossum Idrettsanlegg,,59.9589,10.6128,local,TRANSIT|WALK
 269,Jernbanetorget to Sons gate (ruter-tetApp),15:05,,,Jernbanetorget,NSR:StopPlace:58366,59.9119,10.75038,Sons gate,,59.9148,10.7802,local,TRANSIT|WALK
 270,from to to (vy-itinerary-high-priority),16:00,,12m,,NSR:GroupOfStopPlaces:1,59.91036,10.75305,,NSR:StopPlace:26728,58.76642,5.8619,long_distance,TRANSIT|WALK
 271,Tveita T to Helsfyr (ruter-tetApp),00:27,,,Tveita T,NSR:StopPlace:59517,59.91395,10.84226,Helsfyr,NSR:StopPlace:59516,59.91267,10.80105,local,TRANSIT|WALK
@@ -278,7 +278,7 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 277,Skillebekk to Nydalen (ruter-ruter-no),09:25,,,Skillebekk,NSR:StopPlace:58364,59.91281,10.7111,Nydalen,NSR:StopPlace:59605,59.94906,10.76685,local,TRANSIT|WALK
 278,Lørenskog sentrum to Bårlibråten (ruter-ruter-no),14:54,,,Lørenskog sentrum,NSR:StopPlace:59607,59.92808,10.95383,Bårlibråten,,59.9409,11.0106,local,TRANSIT|WALK
 279,from to to (vy-itinerary-high-priority),06:06,,6m,,NSR:StopPlace:418,0.0,0.0,,NSR:StopPlace:301,0.0,0.0,local,TRANSIT|WALK
-280,Din posisjon to Jonas Lies gate (ruter-tetApp),14:00,,,Din posisjon,,59.9913,10.935,Jonas Lies gate,NSR:StopPlace:4486,59.95702,11.03511,local,TRANSIT|WALK
+280,Din posisjon to Jonas Lies gate (ruter-tetApp),14:00,,,Din posisjon,,59.98585,10.93289,Jonas Lies gate,NSR:StopPlace:4486,59.95702,11.03511,local,TRANSIT|WALK
 281,Hamar stasjon to Lesja stasjon (entur-search),06:25,,,Hamar stasjon,NSR:StopPlace:60045,60.79153,11.0771,Lesja stasjon,NSR:StopPlace:62347,62.11851,8.85318,long_distance,TRANSIT|WALK
 282,Din posisjon to Stranden (ruter-tetApp),17:57,,,Din posisjon,,59.9454,10.7172,Stranden,,59.9103,10.728,local,TRANSIT|WALK
 283,from to to (vy-itinerary-high-priority),11:05,,12m,,NSR:StopPlace:58832,60.5345,8.20675,,NSR:GroupOfStopPlaces:80,59.8929,10.52575,long_distance,TRANSIT|WALK

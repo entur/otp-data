@@ -148,7 +148,7 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 147,Bekkenstenveien to Nationaltheatret (ruter-tetApp),07:45,,,Bekkenstenveien,NSR:StopPlace:5892,59.95286,10.88607,Nationaltheatret,NSR:StopPlace:58404,59.91499,10.73220,local,TRANSIT|WALK
 148,Din posisjon to Schweigaards gate (ruter-tetApp),10:39,,,Din posisjon,,59.9211,10.7712,Schweigaards gate,,59.9085,10.7676,local,TRANSIT|WALK
 149,Din posisjon to Ole Vigs gate (ruter-tetApp),16:35,,,Din posisjon,,59.9121,10.7676,Ole Vigs gate,,59.9265,10.7226,local,TRANSIT|WALK
-150,from to to (vy-itinerary-high-priority),14:00,,12m,,,60.1965,11.0934,,NSR:StopPlace:59639,59.51489,10.72532,regional,TRANSIT|WALK
+150,from to to (vy-itinerary-high-priority),14:00,,12m,,,60.20243,11.09048,,NSR:StopPlace:59639,59.51489,10.72532,regional,TRANSIT|WALK
 151,Your location to Christies gate (skyss-tetApp),09:49,,,Your location,,60.4026,5.3226,Christies gate,,60.3900,5.3244,local,TRANSIT|WALK
 152,Kleppestø senter to Stongafjellet snuplass (skyss-tetApp),14:00,,,Kleppestø senter,NSR:StopPlace:30831,60.40973,5.22798,Stongafjellet snuplass,NSR:StopPlace:59984,60.40884,5.20431,local,TRANSIT|WALK
 153,Røyken stasjon to Tofte (ruter-tetApp),14:06,,,Røyken stasjon,NSR:StopPlace:58838,59.74659,10.38990,Tofte,,59.5431,10.5606,regional,TRANSIT|WALK
@@ -631,7 +631,7 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 630,Lynghaug skole to Tellnesskiftet (skyss-ruter-no),13:45,,,Lynghaug skole,,60.3558,5.2992,Tellnesskiftet,NSR:StopPlace:29992,60.29637,5.08318,local,BUS|COACH|FERRY|RAIL|TRAM|WALK
 631,Dyrløkke to Oslo bussterminal (ruter-tetApp),09:00,,,Dyrløkke,NSR:StopPlace:5532,59.67380,10.65564,Oslo bussterminal,NSR:StopPlace:58293,59.91132,10.75949,regional,TRANSIT|WALK
 632,Stortorget to Åskammen (ruter-tetApp),13:59,,,Stortorget,NSR:StopPlace:5591,59.95776,11.05077,Åskammen,NSR:StopPlace:4191,60.02936,11.07457,local,TRANSIT|WALK
-633,Lagunen terminal to Hegglandsdalsvegen (skyss-tetApp),19:44,,,Lagunen terminal,NSR:StopPlace:59849,60.29807,5.32816,Hegglandsdalsvegen,,60.2046,5.4972,local,TRANSIT|WALK
+633,Lagunen terminal to Hegglandsdalsvegen (skyss-tetApp),19:44,,,Lagunen terminal,NSR:StopPlace:59849,60.29807,5.32816,Hegglandsdalsvegen,,60.20782,5.48788,local,TRANSIT|WALK
 634,Ødegården to Kolbotn stasjon (ruter-tetApp),16:45,,,Ødegården,NSR:StopPlace:3508,59.80202,10.81876,Kolbotn stasjon,NSR:StopPlace:58853,59.81094,10.80118,local,TRANSIT|WALK
 635,Din posisjon to Kontraskjæret (ruter-tetApp),,10:00,,Din posisjon,,59.8149,10.4724,Kontraskjæret,NSR:StopPlace:4245,59.91089,10.73578,local,TRANSIT|WALK
 636,Leangen stasjon to Hell stasjon (entur-search),16:44,,,Leangen stasjon,NSR:StopPlace:393,63.43755,10.46162,Hell stasjon,NSR:StopPlace:61735,63.44591,10.89627,regional,TRANSIT|FLEX|WALK
@@ -768,7 +768,7 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 767,Furuset to Ensjø (ruter-tetApp),19:45,,,Furuset,NSR:StopPlace:58221,59.94089,10.89752,Ensjø,NSR:StopPlace:59762,59.91406,10.78728,local,TRANSIT|WALK
 768,Din posisjon to Amalie Skrams vei (skyss-tetApp),09:22,,,Din posisjon,,60.3792,5.3370,Amalie Skrams vei,,60.4080,5.3262,local,TRANSIT|WALK
 769,from to to (vy-itinerary-high-priority),07:49,,12m,,NSR:StopPlace:58404,59.91499,10.73220,,NSR:GroupOfStopPlaces:31,60.79184,11.07491,regional,TRANSIT|WALK
-770,Din posisjon to Tinnemyra (ruter-tetApp),13:45,,,Din posisjon,,59.5701,9.2772,Tinnemyra,,59.5764,9.2934,local,TRANSIT|WALK
+770,Din posisjon to Tinnemyra (ruter-tetApp),13:45,,,Din posisjon,,59.5701,9.2772,Tinnemyra,,59.57878,9.29455,local,TRANSIT|WALK
 771,Din posisjon to Nydalen (ruter-tetApp),13:45,,,Din posisjon,,59.9391,10.7604,Nydalen,NSR:StopPlace:59605,59.94906,10.76685,local,TRANSIT|WALK
 772,Din posisjon to Trondheim S (ruter-tetApp),10:20,,,Din posisjon,,59.9166,10.7226,Trondheim S,NSR:StopPlace:59977,63.43628,10.39912,long_distance,TRANSIT|WALK
 773,Lillevold to Lunde (entur-search),07:35,,,Lillevold,NSR:StopPlace:7423,60.74202,11.17671,Lunde,NSR:StopPlace:7435,60.72298,11.19131,local,TRANSIT|WALK
@@ -947,7 +947,7 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 946,Nationaltheatret to Skøyen stasjon (ruter-tetApp),14:00,,,Nationaltheatret,NSR:StopPlace:58404,59.91499,10.73220,Skøyen stasjon,NSR:StopPlace:59651,59.92238,10.67851,local,TRANSIT|WALK
 947,Bergen stasjon to Bergen sentrum (skyss-tetApp),10:45,,,Bergen stasjon,NSR:StopPlace:59983,60.39043,5.33351,Bergen sentrum,NSR:GroupOfStopPlaces:174,60.39148,5.32567,local,TRANSIT|WALK
 948,Nationaltheatret to Sandvika stasjon (ruter-tetApp),07:45,,,Nationaltheatret,NSR:StopPlace:58404,59.91499,10.73220,Sandvika stasjon,NSR:StopPlace:610,59.89290,10.52575,local,TRANSIT|WALK
-949,Jondal ferjekai to Eidesfossvegen (skyss-ruter-no),14:00,,,Jondal ferjekai,NSR:StopPlace:59335,60.27571,6.25141,Eidesfossvegen,,60.2820,6.3018,local,BUS|COACH|FERRY|RAIL|TRAM|WALK
+949,Jondal ferjekai to Eidesfossvegen (skyss-ruter-no),14:00,,,Jondal ferjekai,NSR:StopPlace:59335,60.27571,6.25141,Eidesfossvegen,,60.28285,6.30716,local,BUS|COACH|FERRY|RAIL|TRAM|WALK
 950,Ski stasjon to Oslo S (ruter-tetApp),07:36,,,Ski stasjon,NSR:StopPlace:60944,59.71829,10.83367,Oslo S,NSR:StopPlace:59872,59.91036,10.75305,regional,TRANSIT|WALK
 951,Vålertunet to Kremmertorget (entur-search),10:36,,,Vålertunet,NSR:StopPlace:10252,60.66915,11.83555,Kremmertorget,NSR:StopPlace:10541,60.87854,11.56517,regional,TRANSIT|WALK
 952,Repslagergaten 4C to Ulriksdal (skyss-tetApp),07:39,,,Repslagergaten,,60.4017,5.3244,Ulriksdal,,60.3783,5.3640,local,TRANSIT|WALK
@@ -976,7 +976,7 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 975,Sønsterudveien to Nationaltheatret (ruter-tetApp),07:45,,,Sønsterudveien,,59.8041,10.8108,Nationaltheatret,NSR:StopPlace:58404,59.91499,10.73220,local,TRANSIT|WALK
 976,Oslo S to Trondheim S (entur-search),13:00,,,Oslo S,NSR:StopPlace:59872,59.91036,10.75305,Trondheim S,NSR:StopPlace:59977,63.43628,10.39912,long_distance,TRANSIT|WALK
 977,Storo to Ullevålsveien (ruter-tetApp),09:59,,,Storo,NSR:StopPlace:58195,59.94527,10.77864,Ullevålsveien,,59.9319,10.7352,local,TRANSIT|WALK
-978,Aktivitetsvegen to LHL-sykehuset Gardermoen (ruter-tetApp),11:08,,,Aktivitetsvegen,NSR:StopPlace:5163,60.15129,11.18814,LHL-sykehuset Gardermoen,,60.1659,11.1636,local,TRANSIT|WALK
+978,Aktivitetsvegen to LHL-sykehuset Gardermoen (ruter-tetApp),11:08,,,Aktivitetsvegen,NSR:StopPlace:5163,60.15129,11.18814,LHL-sykehuset Gardermoen,,60.16138,11.17822,local,TRANSIT|WALK
 979,Your location to Fjellgata (ruter-tetApp),19:45,,,Your location,,59.9274,10.7190,Fjellgata,,59.9265,10.7730,local,TRANSIT|WALK
 980,Valle to Carl Berners plass (ruter-tetApp),15:19,,,Valle,NSR:StopPlace:6059,59.91768,10.79991,Carl Berners plass,NSR:StopPlace:58189,59.92614,10.77630,local,TRANSIT|WALK
 981,from to to (vy-itinerary-high-priority),07:45,,6m,,NSR:StopPlace:58856,59.91320,10.63736,,NSR:StopPlace:59952,59.73994,10.20495,regional,TRANSIT|WALK

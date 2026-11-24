@@ -174,7 +174,7 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 173,Eidskog kirke to Langelandshjemmet (ruter-tetApp),06:58,,,Eidskog kirke,NSR:StopPlace:8863,60.02992,12.12319,Langelandshjemmet,NSR:StopPlace:10248,60.20068,11.98602,regional,TRANSIT|WALK
 174,Sentralen to Sandvika bussterminal (ruter-tetApp),13:45,,,Sentralen,NSR:StopPlace:10529,60.79053,10.9025,Sandvika bussterminal,NSR:StopPlace:4030,59.8929,10.52456,long_distance,TRANSIT|WALK
 175,Din posisjon to Akersgata (ruter-tetApp),05:28,,,Din posisjon,,59.9616,10.8738,Akersgata,,59.9157,10.7442,local,TRANSIT|WALK
-176,Posisjonen din to Sinsenveien (entur-search),11:09,,,Posisjonen din,,60.1956,11.0898,Sinsenveien,,59.9292,10.7856,regional,TRANSIT|WALK
+176,Posisjonen din to Sinsenveien (entur-search),11:09,,,Posisjonen din,,60.20201,11.09507,Sinsenveien,,59.9292,10.7856,regional,TRANSIT|WALK
 177,Posisjonen din to Oslo S (entur-search),09:27,,,Posisjonen din,,59.7168,10.8252,Oslo S,NSR:StopPlace:59872,59.91036,10.75305,regional,TRANSIT|WALK
 178,from to to (vy-itinerary-high-priority),08:11,,12m,,NSR:StopPlace:59243,66.30959,14.13347,,NSR:StopPlace:58947,64.01254,11.49479,long_distance,TRANSIT|WALK
 179,Din posisjon to Asker stasjon (ruter-tetApp),13:59,,,Din posisjon,,59.7402,10.4112,Asker stasjon,NSR:StopPlace:59616,59.83313,10.43417,local,TRANSIT|WALK
@@ -240,7 +240,7 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 239,from to Sandnes sentrum (kolumbus-reisevenn),07:11,,,,,58.7754,5.6268,Sandnes sentrum,,58.8519,5.7348,local,TRANSIT|WALK
 240,Posisjonen din to Hamar stasjon (entur-search),18:25,,,Posisjonen din,,61.1154,10.4616,Hamar stasjon,NSR:StopPlace:60045,60.79153,11.0771,regional,TRANSIT|FLEX|WALK
 241,from to to (vy-itinerary-high-priority),06:38,,6m,,NSR:StopPlace:203,0.0,0.0,,NSR:StopPlace:547,0.0,0.0,local,TRANSIT|WALK
-242,Your location to Tregaardens Julehus (ruter-tetApp),09:03,,,Your location,,59.9022,10.7568,Tregaardens Julehus,,59.6628,10.629,regional,TRANSIT|WALK
+242,Your location to Tregaardens Julehus (ruter-tetApp),09:03,,,Your location,,59.90026,10.76026,Tregaardens Julehus,,59.6628,10.629,regional,TRANSIT|WALK
 243,Blakstad bussterminal to Bødalen (ruter-tetApp),14:00,,,Blakstad bussterminal,NSR:StopPlace:3209,59.81926,10.46526,Bødalen,NSR:StopPlace:16318,59.75856,10.45924,local,TRANSIT|WALK
 244,Huseby leir to Terningen Arena rv. 25 (entur-search),13:01,,,Huseby leir,,59.9418,10.656,Terningen Arena rv. 25,NSR:StopPlace:7224,60.88235,11.53952,long_distance,TRANSIT|WALK
 245,from to to (vy-itinerary-high-priority),11:49,,12m,,NSR:GroupOfStopPlaces:7,60.39043,5.33351,,NSR:GroupOfStopPlaces:114,59.76718,9.91113,long_distance,TRANSIT|WALK
@@ -343,11 +343,11 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 342,Bergen busstasjon to Lyshovden sør (skyss-tetApp),22:04,,,Bergen busstasjon,NSR:StopPlace:62356,60.38811,5.33461,Lyshovden sør,NSR:StopPlace:32326,60.34541,5.30418,local,TRANSIT|WALK
 343,Høvik kirke to Evje (ruter-tetApp),07:45,,,Høvik kirke,NSR:StopPlace:59623,59.89915,10.57862,Evje,NSR:StopPlace:3974,59.89744,10.52148,local,TRANSIT|WALK
 344,Din posisjon to Majorstuen (ruter-tetApp),14:11,,,Din posisjon,,59.8671,10.8234,Majorstuen,NSR:StopPlace:58381,59.92921,10.71634,local,TRANSIT|WALK
-345,Ski stasjon to Glynitveien (ruter-tetApp),06:57,,,Ski stasjon,NSR:StopPlace:60944,59.71829,10.83367,Glynitveien,,59.7186,10.8702,local,TRANSIT|WALK
+345,Ski stasjon to Glynitveien (ruter-tetApp),06:57,,,Ski stasjon,NSR:StopPlace:60944,59.71829,10.83367,Glynitveien,,59.72421,10.86166,local,TRANSIT|WALK
 346,from to to (vy-itinerary-high-priority),08:18,,12m,,NSR:StopPlace:64546,59.37575,10.39437,,,60.7248,11.8026,long_distance,TRANSIT|WALK
 347,Røros to Trondheim (entur-search),08:00,,,Røros,NSR:GroupOfStopPlaces:95,62.57468,11.37957,Trondheim,NSR:GroupOfStopPlaces:10,63.43512,10.39773,long_distance,TRANSIT|FLEX|WALK
 348,Din posisjon to Regnbueveien (ruter-tetApp),00:44,,,Din posisjon,,59.9193,10.6884,Regnbueveien,,59.9166,10.8198,local,TRANSIT|WALK
-349,Din posisjon to Ullevål sykehus (ruter-tetApp),13:33,,,Din posisjon,,60.1947,11.1078,Ullevål sykehus,NSR:StopPlace:58263,59.93601,10.73253,regional,TRANSIT|WALK
+349,Din posisjon to Ullevål sykehus (ruter-tetApp),13:33,,,Din posisjon,,60.195,11.09589,Ullevål sykehus,NSR:StopPlace:58263,59.93601,10.73253,regional,TRANSIT|WALK
 350,Your location to Himstadplassen (ruter-tetApp),20:57,,,Your location,,59.9724,10.6452,Himstadplassen,NSR:StopPlace:6414,59.96301,10.64585,local,TRANSIT|WALK
 351,Your location to National Museum (ruter-tetApp),19:38,,,Your location,,59.9103,10.746,National Museum,,59.9112,10.7298,local,TRANSIT|WALK
 352,Oslo S to Smedsmo (entur-search),09:58,,,Oslo S,NSR:StopPlace:59872,59.91036,10.75305,Smedsmo,NSR:StopPlace:12349,61.86936,9.10357,long_distance,TRANSIT|WALK

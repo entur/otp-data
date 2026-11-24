@@ -199,7 +199,7 @@ testCaseId,description,departure,arrival,window,origin,fromPlace,fromLat,fromLon
 198,Margrethe Grundtvigs veg to Skjærbergsvegen (entur-search),14:15,,,Margrethe Grundtvigs veg,,61.1127,10.476,Skjærbergsvegen,,61.0812,12.4524,long_distance,TRANSIT|WALK
 199,Din posisjon to Hunstadsvingen (skyss-tetApp),06:38,,,Din posisjon,,60.3621,5.3676,Hunstadsvingen,NSR:StopPlace:29196,60.37349,5.35095,local,TRANSIT|WALK
 200,Kristiansand to Nesbru (entur-search),04:34,,,Kristiansand,NSR:GroupOfStopPlaces:9,58.14518,7.98816,Nesbru,NSR:StopPlace:4441,59.8658,10.48894,long_distance,TRANSIT|FLEX|WALK
-201,from to to (vy-itinerary-high-priority),05:12,,12m,,,59.3568,10.8414,,NSR:StopPlace:59091,58.37976,6.95781,long_distance,TRANSIT|WALK
+201,from to to (vy-itinerary-high-priority),05:12,,12m,,,59.35888,10.84395,,NSR:StopPlace:59091,58.37976,6.95781,long_distance,TRANSIT|WALK
 202,Posisjonen din to Ås stasjon (entur-search),20:01,,,Posisjonen din,,60.795,11.0664,Ås stasjon,NSR:StopPlace:58869,59.6634,10.79422,long_distance,TRANSIT|FLEX|WALK
 203,Din posisjon to Oslo S (ruter-tetApp),08:42,,,Din posisjon,,59.9184,10.7352,Oslo S,NSR:StopPlace:59872,59.91036,10.75305,local,TRANSIT|WALK
 204,Din posisjon to Ski stasjon (ruter-tetApp),15:08,,,Din posisjon,,59.9553,10.584,Ski stasjon,NSR:StopPlace:60944,59.71829,10.83367,regional,TRANSIT|WALK
