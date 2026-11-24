@@ -3,9 +3,9 @@
   "otpFeatures" : {
     "ActuatorAPI" : true,
     "ConsiderPatternsForDirectTransfers" : true,
-    "Emission" : true,
+    //"Emission" : true,
     // EmpiricalDelay is on in STAGING and PROD
-    "EmpiricalDelay" : false,
+    //"EmpiricalDelay" : false,
     "FlexRouting" : true,
     "GoogleCloudStorage" : true,
     "FloatingBike" : true,
