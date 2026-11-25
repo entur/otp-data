@@ -16,7 +16,8 @@ log-*.txt
 report/
 netex/
 jmeter/
-speedtest/
 tools/
 target/
 otp/
+bench-results/
+routing-requests-player/

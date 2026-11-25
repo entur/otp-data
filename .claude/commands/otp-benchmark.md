@@ -31,25 +31,41 @@ AskUserQuestion (one call, all questions together). Do not guess; offer these de
 2. **Branch to compare with** (the "base" build). Default `base` = the merge-base of the
    current checkout and `otp/dev-2.x`: `git merge-base HEAD otp/dev-2.x` (run
    `git fetch otp dev-2.x` first). Other options: a branch name or commit the user types in, or
-   no comparison (only time the current checkout). The other build, `head`, is the current
-   checkout of the OpenTripPlanner repo (`/Users/thomasgran/code/entur/otp/otp`).
+   no comparison (only time the head). The other build, `head`, is the committed `HEAD` of the
+   checkout the command was started from. It is benchmarked in its own temporary worktree, never in
+   the checkout itself (see "Preparing the builds"). Uncommitted changes are not measured: if
+   `git status --short` is not empty, tell the user and ask whether to commit first.
 3. **Number of runs per cycle** (1..5): how many of the sets `run-1`..`run-5` to use, always
    starting with `run-1`. Default 5. Pass it as `sets=run-1,...,run-N`. The `warmup` set is always
    run in addition. Pairs = runs x cycles, and a comparison needs at least 3 pairs.
 4. **Number of cycles.** Default 1.
 
 Show the plan before starting: builds with commit, number of runs, cycles, and the expected time
-(see below).
+(see below). End the plan with one line in this form, with the estimate and the clock time
+computed from the start time (`date +%H:%M:%S`): `Estimated duration 12 minutes, done at 17:45:32`.
+Estimate = number of runs x 1.5 minutes, where runs = (warmup + sets) x builds x cycles, plus
+about 1 minute for compiling. Repeat the line when you report that the run has started.
 
-### Preparing the base build
+### Preparing the builds (temporary worktrees)
 
-If the base is a branch or commit and no checkout of it exists, create a detached worktree
-outside the repo, e.g. `git worktree add --detach /Users/thomasgran/code/entur/otp/worktrees/benchmark-base <commit>`
-(reuse it if it already exists and is at that commit; otherwise `git -C <dir> checkout --detach
-<commit>`). Tell the user before creating it. The script builds the classpath and compiles the checkout itself (about 20 s per checkout). Also
-check that the graph exists for the base's serialization id (step 2 below); if the id differs from the
-head's, the two builds need different graphs and the run cannot be compared: stop and tell the
-user.
+The benchmark must not run in a checkout the user is working in: the script refuses to start while
+a Maven or java process runs in a build directory, and compiling there would disturb the user's
+work. So every build runs in its own detached worktree outside the repo:
+
+- base: `/Users/thomasgran/code/entur/otp/worktrees/benchmark-base`
+- head: `/Users/thomasgran/code/entur/otp/worktrees/benchmark-head`
+
+For each, with `<commit>` the resolved commit (`git rev-parse HEAD` for head): if the directory does
+not exist, `git worktree add --detach <dir> <commit>`; if it exists, `git -C <dir> checkout --detach
+<commit>`. Tell the user before creating one. Pass these directories (not the user's checkout) as
+`REPO_DIR`. The script builds the classpath and compiles each worktree itself (about 20 s each).
+Check that the graph exists for each build's serialization id (step 2 below); if the ids differ,
+the two builds need different graphs and the run cannot be compared: stop and tell the user.
+
+After the report, remove the worktrees (`git worktree remove --force <dir>`) unless the user wants
+to keep them for the next run. Say which you did. The user can keep working, building and
+reviewing in their own checkout during the whole run, but heavy work (builds, tests, IDE indexing
+bursts) still disturbs the timings and should be avoided.
 
 ## Before a run
 
@@ -63,8 +79,8 @@ user.
    cycle is warmup + run-1..5 for each build, so 12 runs for two builds, about 20 minutes. Ask for a
    go-ahead if the total is more than 30 minutes.
 4. Nothing else heavy may run on the machine during the benchmark, and no Maven or java process may
-   run in a build directory (a `mvn clean` there deletes the classes under the benchmark). Mention
-   it. The script checks this before the start and before every run, and stops with the process
+   run in a benchmark worktree (a `mvn clean` there deletes the classes under the benchmark). The
+   user's own checkout is free to use. Mention it. The script checks this before the start and before every run, and stops with the process
    list if it finds one.
 
 ## Run
